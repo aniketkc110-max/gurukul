@@ -1,452 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Gyan Mandir Gurukul – Ahmedabad</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="css/style.css"/>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gnanmandir Gurukul — Adalaj</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
 
-<!-- ══════════ NAVBAR ══════════ -->
-<nav class="navbar" id="navbar">
-  <div class="nav-brand">
-    <div class="nav-om">ॐ</div>
-    <div class="nav-name">
-      Gyan Mandir Gurukul
-      <small>Ahmedabad · Gujarat · India</small>
-    </div>
-  </div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#vision">Vision</a></li>
-    <li><a href="#facilities">Facilities</a></li>
-    <li><a href="#activities">Activities</a></li>
-    <li><a href="#why">Why Us</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar" id="progressBar"></div>
 
-<!-- ══════════ HERO ══════════ -->
-<section class="hero" id="home">
-  <div class="hero-mandala">
-    <svg viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="400" cy="400" r="380" stroke="#C8962A" stroke-width="1"/>
-      <circle cx="400" cy="400" r="320" stroke="#C8962A" stroke-width="0.5"/>
-      <circle cx="400" cy="400" r="260" stroke="#C8962A" stroke-width="1"/>
-      <circle cx="400" cy="400" r="200" stroke="#C8962A" stroke-width="0.5"/>
-      <circle cx="400" cy="400" r="140" stroke="#C8962A" stroke-width="1"/>
-      <circle cx="400" cy="400" r="80" stroke="#C8962A" stroke-width="0.5"/>
-      <!-- Petals -->
-      <g stroke="#C8962A" stroke-width="0.7">
-        <ellipse cx="400" cy="210" rx="18" ry="60" transform="rotate(0 400 400)"/>
-        <ellipse cx="400" cy="210" rx="18" ry="60" transform="rotate(30 400 400)"/>
-        <ellipse cx="400" cy="210" rx="18" ry="60" transform="rotate(60 400 400)"/>
-        <ellipse cx="400" cy="210" rx="18" ry="60" transform="rotate(90 400 400)"/>
-        <ellipse cx="400" cy="210" rx="18" ry="60" transform="rotate(120 400 400)"/>
-        <ellipse cx="400" cy="210" rx="18" ry="60" transform="rotate(150 400 400)"/>
-        <ellipse cx="400" cy="210" rx="18" ry="60" transform="rotate(180 400 400)"/>
-        <ellipse cx="400" cy="210" rx="18" ry="60" transform="rotate(210 400 400)"/>
-        <ellipse cx="400" cy="210" rx="18" ry="60" transform="rotate(240 400 400)"/>
-        <ellipse cx="400" cy="210" rx="18" ry="60" transform="rotate(270 400 400)"/>
-        <ellipse cx="400" cy="210" rx="18" ry="60" transform="rotate(300 400 400)"/>
-        <ellipse cx="400" cy="210" rx="18" ry="60" transform="rotate(330 400 400)"/>
-      </g>
-      <!-- Diagonals -->
-      <g stroke="#C8962A" stroke-width="0.4" opacity="0.5">
-        <line x1="20" y1="400" x2="780" y2="400"/>
-        <line x1="400" y1="20" x2="400" y2="780"/>
-        <line x1="131" y1="131" x2="669" y2="669"/>
-        <line x1="669" y1="131" x2="131" y2="669"/>
-      </g>
-    </svg>
+  <!-- SLIDE COUNTER -->
+  <div class="slide-counter">
+    <span id="currentSlide">1</span><span class="sep">/</span><span id="totalSlides">6</span>
   </div>
 
-  <div class="hero-content">
-    <div class="hero-flag">🇮🇳 &nbsp; Ahmedabad, Gujarat, India</div>
-    <span class="hero-om">ॐ</span>
-    <h1 class="hero-title">
-      Gyan Mandir<br/>
-      <span class="gold">Gurukul</span>
-    </h1>
-    <p class="hero-subtitle">Est. Ahmedabad &nbsp;·&nbsp; Gujarat &nbsp;·&nbsp; India</p>
-    <p class="hero-tagline">
-      Where Ancient Wisdom Meets<br/>Modern Excellence
-    </p>
-    <div class="hero-pills">
-      <div class="hero-pill">📘 Strong Academics</div>
-      <div class="hero-pill">🧠 Value‑Based Education</div>
-      <div class="hero-pill">🎨 Cultural Activities</div>
-      <div class="hero-pill">🏆 Sports &amp; Competitions</div>
-      <div class="hero-pill">🌱 Personality Development</div>
-    </div>
-    <a href="#about" class="hero-cta">Discover Our School</a>
+  <!-- NAV DOTS -->
+  <nav class="nav-dots" id="navDots"></nav>
+
+  <!-- KEYBOARD HINT -->
+  <div class="key-hint" id="keyHint">
+    <i class="fa fa-keyboard"></i> Arrow keys to navigate
   </div>
 
-  <div class="scroll-dot">
-    <span></span>
-    <p>Scroll</p>
-  </div>
-</section>
+  <!-- ═══════════════════════════════ SLIDES ═══════════════════════════════ -->
+  <div class="slides-wrapper" id="slidesWrapper">
 
-<!-- ══════════ STATS BAND ══════════ -->
-<div class="stats-band">
-  <div class="stat-item reveal">
-    <span class="stat-num">1000+</span>
-    <span class="stat-label">Students Enrolled</span>
-  </div>
-  <div class="stat-item reveal">
-    <span class="stat-num">80+</span>
-    <span class="stat-label">Expert Educators</span>
-  </div>
-  <div class="stat-item reveal">
-    <span class="stat-num">25+</span>
-    <span class="stat-label">Years of Excellence</span>
-  </div>
-  <div class="stat-item reveal">
-    <span class="stat-num">50+</span>
-    <span class="stat-label">Awards &amp; Honours</span>
-  </div>
-  <div class="stat-item reveal">
-    <span class="stat-num">100%</span>
-    <span class="stat-label">Dedication to Values</span>
-  </div>
-</div>
+    <!-- ── SLIDE 1 — TITLE ── -->
+    <section class="slide slide-title active" data-slide="1">
+      <div class="slide-bg-orb orb-1"></div>
+      <div class="slide-bg-orb orb-2"></div>
+      <div class="slide-bg-orb orb-3"></div>
 
-<!-- ══════════ ABOUT ══════════ -->
-<section class="about-section section" id="about">
-  <div class="about-grid">
-    <div class="about-visual reveal">
-      <div class="about-art">
-        <div class="about-badge-tl">🇮🇳 Ahmedabad, Gujarat</div>
-        <div class="about-art-inner">
-          <span class="about-art-om">ॐ</span>
-          <p class="about-art-text">विद्यायां अमृतमश्नुते</p>
-          <p style="color:rgba(255,255,255,0.35);font-size:0.75rem;margin-top:8px;font-family:'Josefin Sans',sans-serif;letter-spacing:0.1em;">Through Knowledge, One Attains Immortality</p>
+      <div class="title-left-panel">
+        <div class="panel-logo">
+          <i class="fa fa-graduation-cap"></i>
         </div>
-        <div class="about-badge-br">Est. in Ahmedabad</div>
+        <div class="panel-label">GURUKUL</div>
+        <div class="panel-sub">EST. ADALAJ, GUJARAT</div>
+        <div class="panel-year">२०२४</div>
       </div>
-      <div class="about-stats-mini">
-        <div class="asm reveal"><strong>1000+</strong><span>Students</span></div>
-        <div class="asm reveal"><strong>80+</strong><span>Teachers</span></div>
-        <div class="asm reveal"><strong>25+</strong><span>Years</span></div>
-        <div class="asm reveal"><strong>50+</strong><span>Awards</span></div>
-      </div>
-    </div>
-    <div class="about-text reveal">
-      <span class="section-eyebrow">Who We Are</span>
-      <h2 class="section-h2">A Legacy of <span class="accent">Knowledge &amp; Character</span></h2>
-      <p>Gyan Mandir Gurukul is one of Ahmedabad's most respected educational institutions, seamlessly blending the timeless wisdom of India's ancient Gurukul tradition with the rigour of 21st‑century learning.</p>
-      <p>We believe that true education shapes not just the mind, but the soul. Our students graduate as confident, compassionate, and capable individuals — ready to lead tomorrow's world with integrity, discipline, and purpose.</p>
-      <p>Rooted in Indian culture and values, we provide a nurturing environment where every child is seen, heard, and empowered to reach their fullest potential.</p>
-      <div class="values-row">
-        <span class="val-tag">🙏 Discipline</span>
-        <span class="val-tag">📖 Respect for Teachers</span>
-        <span class="val-tag">💛 Moral Values</span>
-        <span class="val-tag">🇮🇳 Indian Culture</span>
-        <span class="val-tag">🚀 Modern Education</span>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══════════ VISION & MISSION ══════════ -->
-<section class="vm-section section" id="vision">
-  <span class="section-eyebrow center">Our Foundation</span>
-  <h2 class="section-h2 center" style="color:#fff">Vision &amp; <span style="color:var(--gold-lt)">Mission</span></h2>
-  <p class="section-lead" style="color:rgba(255,255,255,0.55)">Every great institution is built on a clear purpose. Here is the purpose that drives everything we do at Gyan Mandir Gurukul.</p>
-
-  <div class="vm-grid">
-    <div class="vm-card reveal">
-      <span class="vm-icon-big">🎯</span>
-      <h3>Our Vision</h3>
-      <ul class="vm-list">
-        <li>To build intelligent students with sharp analytical and creative minds</li>
-        <li>To develop strong moral character and deep‑rooted ethical values</li>
-        <li>To create future leaders who serve society with humility and compassion</li>
-        <li>To preserve and celebrate India's rich cultural heritage in every classroom</li>
-      </ul>
-    </div>
-    <div class="vm-card reveal">
-      <span class="vm-icon-big">🧭</span>
-      <h3>Our Mission</h3>
-      <ul class="vm-list">
-        <li>Achieve academic excellence through innovative, student‑centred teaching methods</li>
-        <li>Instil discipline, personal responsibility, and lasting self‑reliance in every student</li>
-        <li>Foster pride in Indian culture, heritage, and national identity</li>
-        <li>Provide holistic development through sports, arts, yoga, and community service</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ GURUKUL VALUES ══════════ -->
-<div class="values-strip">
-  <div class="values-inner">
-    <div class="val-item reveal">
-      <span class="vi">🕉️</span>
-      <h5>Spiritual Roots</h5>
-      <p>Ancient Gurukul wisdom as the living foundation of all learning</p>
-    </div>
-    <div class="val-item reveal">
-      <span class="vi">🤝</span>
-      <h5>Respect</h5>
-      <p>Deep reverence for teachers, elders, and fellow students</p>
-    </div>
-    <div class="val-item reveal">
-      <span class="vi">💪</span>
-      <h5>Discipline</h5>
-      <p>Structured routines that build focus, resilience, and inner strength</p>
-    </div>
-    <div class="val-item reveal">
-      <span class="vi">🌍</span>
-      <h5>Service</h5>
-      <p>Teaching students to give back and lead with a spirit of seva</p>
-    </div>
-    <div class="val-item reveal">
-      <span class="vi">🏅</span>
-      <h5>Excellence</h5>
-      <p>A relentless pursuit of the best in academics, sports, and arts</p>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ FACILITIES ══════════ -->
-<section class="facilities-section section" id="facilities">
-  <span class="section-eyebrow center">What We Offer</span>
-  <h2 class="section-h2 center">World‑Class <span class="accent">Facilities</span></h2>
-  <p class="section-lead">Every great learner deserves a great environment. Our campus is designed to inspire curiosity, creativity, and excellence.</p>
-
-  <div class="fac-grid">
-    <div class="fac-card reveal">
-      <div class="fac-top">📚</div>
-      <div class="fac-body">
-        <h4>Library</h4>
-        <p>Over 10,000 books, journals, encyclopaedias, and digital resources. A haven for curious minds to read, research, and dream.</p>
-        <span class="fac-tag">Knowledge Hub</span>
-      </div>
-    </div>
-    <div class="fac-card reveal">
-      <div class="fac-top">💻</div>
-      <div class="fac-body">
-        <h4>Computer Lab</h4>
-        <p>State‑of‑the‑art computers with high‑speed internet, coding software, and digital literacy programmes for future‑ready students.</p>
-        <span class="fac-tag">Technology</span>
-      </div>
-    </div>
-    <div class="fac-card reveal">
-      <div class="fac-top">🏃</div>
-      <div class="fac-body">
-        <h4>Sports Grounds</h4>
-        <p>Spacious, well‑maintained grounds for cricket, football, kabaddi, athletics, and more — building fit minds and strong bodies.</p>
-        <span class="fac-tag">Health &amp; Fitness</span>
-      </div>
-    </div>
-    <div class="fac-card reveal">
-      <div class="fac-top">🖥️</div>
-      <div class="fac-body">
-        <h4>Smart Classrooms</h4>
-        <p>Interactive digital boards, multimedia projectors, and structured seating designed for engaging and effective modern learning.</p>
-        <span class="fac-tag">Innovation</span>
-      </div>
-    </div>
-    <div class="fac-card reveal">
-      <div class="fac-top">🎨</div>
-      <div class="fac-body">
-        <h4>Activity Rooms</h4>
-        <p>Dedicated studios for art, music, dance, yoga, and drama — nurturing the creative spark in every student.</p>
-        <span class="fac-tag">Arts &amp; Culture</span>
-      </div>
-    </div>
-    <div class="fac-card reveal">
-      <div class="fac-top">🔬</div>
-      <div class="fac-body">
-        <h4>Science Laboratories</h4>
-        <p>Fully equipped physics, chemistry, and biology labs where students experiment, discover, and develop a scientific temperament.</p>
-        <span class="fac-tag">Exploration</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ ACTIVITIES ══════════ -->
-<section class="activities-section section" id="activities">
-  <span class="section-eyebrow center">Student Life</span>
-  <h2 class="section-h2 center">Beyond the <span class="accent">Classroom</span></h2>
-  <p class="section-lead">Learning doesn't stop when lessons end. Our vibrant co‑curricular calendar shapes confident, well‑rounded individuals.</p>
-
-  <div class="act-grid">
-    <div class="act-card reveal">
-      <span class="act-num">01</span>
-      <span class="act-icon">🏆</span>
-      <h4>Sports Competitions</h4>
-      <p>Inter‑school tournaments, district championships, and national‑level athletic programmes that build teamwork, grit, and sporting excellence.</p>
-    </div>
-    <div class="act-card reveal">
-      <span class="act-num">02</span>
-      <span class="act-icon">🎭</span>
-      <h4>Annual Functions</h4>
-      <p>Grand celebrations featuring classical dance, drama, music, and Sanskrit performances — showcasing the incredible talent of our students.</p>
-    </div>
-    <div class="act-card reveal">
-      <span class="act-num">03</span>
-      <span class="act-icon">🔭</span>
-      <h4>Science Exhibitions</h4>
-      <p>Innovative student‑led projects presented at city, state, and national science fairs — igniting the spirit of invention and inquiry.</p>
-    </div>
-    <div class="act-card reveal">
-      <span class="act-num">04</span>
-      <span class="act-icon">🎊</span>
-      <h4>Cultural Programs</h4>
-      <p>Yoga Day, Republic Day, Navratri, Independence Day — festivals rooted in Indian heritage that fill our campus with joy and pride.</p>
-    </div>
-    <div class="act-card reveal">
-      <span class="act-num">05</span>
-      <span class="act-icon">🎤</span>
-      <h4>Debate &amp; Elocution</h4>
-      <p>Regular speaking events, essay competitions, and debate championships that develop confident, articulate communicators and thinkers.</p>
-    </div>
-    <div class="act-card reveal">
-      <span class="act-num">06</span>
-      <span class="act-icon">🌱</span>
-      <h4>Community Service</h4>
-      <p>Teaching students the joy of giving back through social outreach camps, cleanliness drives, and village education initiatives.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ WHY CHOOSE US ══════════ -->
-<section class="why-section section" id="why">
-  <span class="section-eyebrow center" style="color:var(--gold-lt)">Why Gyan Mandir Gurukul</span>
-  <h2 class="section-h2 center">What Makes Us <span style="color:var(--gold-lt)">Special</span></h2>
-  <p class="section-lead" style="color:rgba(255,255,255,0.5)">Thousands of families choose Gyan Mandir Gurukul. Here is why we stand apart from every other school in Ahmedabad.</p>
-
-  <div class="why-grid">
-    <div class="why-card reveal">
-      <div class="why-icon-wrap">🌟</div>
-      <h4>Value‑First Education</h4>
-      <p>Every lesson is rooted in respect, honesty, and the timeless values of India's great civilisation.</p>
-    </div>
-    <div class="why-card reveal">
-      <div class="why-icon-wrap">👨‍🏫</div>
-      <h4>Experienced Teachers</h4>
-      <p>Highly qualified, passionate educators who guide every child with personal attention and dedication.</p>
-    </div>
-    <div class="why-card reveal">
-      <div class="why-icon-wrap">🤝</div>
-      <h4>Safe &amp; Friendly Campus</h4>
-      <p>A warm, inclusive environment where every student feels seen, supported, and celebrated.</p>
-    </div>
-    <div class="why-card reveal">
-      <div class="why-icon-wrap">🏅</div>
-      <h4>Holistic Development</h4>
-      <p>Academics, arts, sports, and service — we nurture every dimension of your child's true potential.</p>
-    </div>
-    <div class="why-card reveal">
-      <div class="why-icon-wrap">🎓</div>
-      <h4>Proven Results</h4>
-      <p>Consistently outstanding board results with students placed in India's top universities and institutions.</p>
-    </div>
-    <div class="why-card reveal">
-      <div class="why-icon-wrap">🇮🇳</div>
-      <h4>Indian Culture &amp; Pride</h4>
-      <p>Sanskrit, yoga, festivals, and ancient wisdom form the living, beating heart of our school life.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ QUOTE ══════════ -->
-<section class="quote-section">
-  <span class="quote-mark">"</span>
-  <blockquote>Education is the most powerful weapon<br/>you can use to change the world.</blockquote>
-  <cite>— Nelson Mandela</cite>
-  <div class="quote-divider"></div>
-  <p class="quote-tagline">At Gyan Mandir Gurukul, we place that weapon in every child's hands — with wisdom, love, and an unshakeable sense of purpose.</p>
-</section>
-
-<!-- ══════════ CONTACT ══════════ -->
-<section class="contact-section section" id="contact">
-  <span class="section-eyebrow center">Get In Touch</span>
-  <h2 class="section-h2 center">Visit <span class="accent">Us</span></h2>
-  <p class="section-lead">We welcome parents, students, and well‑wishers to visit our campus and experience the Gyan Mandir Gurukul difference for yourself.</p>
-
-  <div class="contact-grid">
-    <div class="contact-info-block">
-      <div class="ci-row reveal">
-        <div class="ci-icon">📍</div>
-        <div class="ci-body">
-          <strong>Address</strong>
-          <p>Gyan Mandir Gurukul, Ahmedabad, Gujarat – India</p>
+      <div class="title-content">
+        <div class="title-eyebrow reveal">Residential Learning Community</div>
+        <h1 class="title-main reveal delay-1">
+          Gnanmandir<br/><span class="gold">Gurukul</span>
+        </h1>
+        <div class="title-divider reveal delay-2"></div>
+        <p class="title-location reveal delay-2">
+          <i class="fa fa-location-dot"></i> Adalaj (Gandhinagar), Gujarat
+        </p>
+        <p class="title-tagline reveal delay-3">
+          "Where Knowledge Meets Character"
+        </p>
+        <div class="title-badges reveal delay-4">
+          <span class="badge"><i class="fa fa-shield-halved"></i> Safe</span>
+          <span class="badge"><i class="fa fa-book-open"></i> Academic</span>
+          <span class="badge"><i class="fa fa-heart"></i> Values-Driven</span>
         </div>
       </div>
-      <div class="ci-row reveal">
-        <div class="ci-icon">📞</div>
-        <div class="ci-body">
-          <strong>Phone</strong>
-          <p>+91 79 XXXX XXXX</p>
+
+      <div class="slide-footer">
+        A Residential Learning Community for Boys &nbsp;·&nbsp; Dada Bhagwan Foundation
+      </div>
+    </section>
+
+    <!-- ── SLIDE 2 — WHAT IS IT? ── -->
+    <section class="slide slide-what" data-slide="2">
+      <div class="slide-header">
+        <div class="slide-num">02</div>
+        <h2 class="slide-title-text reveal">What Is <span class="gold">Gnanmandir Gurukul?</span></h2>
+        <p class="slide-subtitle reveal delay-1">A sanctuary where boys grow into scholars and citizens of character</p>
+      </div>
+
+      <div class="cards-grid reveal delay-2">
+        <div class="info-card">
+          <div class="card-icon-wrap saffron">
+            <i class="fa fa-house"></i>
+          </div>
+          <h3>Residential Gurukul</h3>
+          <p>A structured hostel environment specifically designed for boys — providing safe, secure, and nurturing accommodation while they pursue their education.</p>
+          <div class="card-tag">Housing & Boarding</div>
+        </div>
+
+        <div class="info-card featured">
+          <div class="card-icon-wrap gold">
+            <i class="fa fa-location-dot"></i>
+          </div>
+          <h3>Prime Location</h3>
+          <p>Nestled near Simandhar City, Adalaj, Gujarat — within a vibrant spiritual and educational community that fosters focus and growth.</p>
+          <div class="card-tag">Adalaj, Gujarat</div>
+        </div>
+
+        <div class="info-card">
+          <div class="card-icon-wrap saffron">
+            <i class="fa fa-graduation-cap"></i>
+          </div>
+          <h3>Student Support Hub</h3>
+          <p>Beyond just housing, Gnanmandir offers holistic support: study discipline, character development, and a family-like atmosphere away from home.</p>
+          <div class="card-tag">Holistic Support</div>
         </div>
       </div>
-      <div class="ci-row reveal">
-        <div class="ci-icon">✉️</div>
-        <div class="ci-body">
-          <strong>Email</strong>
-          <p>info@gyanmandirgurukul.edu.in</p>
+
+      <blockquote class="slide-quote reveal delay-3">
+        <i class="fa fa-quote-left"></i>
+        A place where students grow academically, spiritually, and as complete human beings.
+      </blockquote>
+    </section>
+
+    <!-- ── SLIDE 3 — WHO RUNS IT? ── -->
+    <section class="slide slide-who" data-slide="3">
+      <div class="slide-bg-orb orb-who-1"></div>
+      <div class="slide-bg-orb orb-who-2"></div>
+
+      <div class="who-left reveal">
+        <div class="dbf-emblem">
+          <div class="emblem-ring">
+            <i class="fa fa-person-praying"></i>
+          </div>
+          <div class="emblem-label">DBF</div>
+          <div class="emblem-full">Dada Bhagwan Foundation</div>
         </div>
       </div>
-      <div class="ci-row reveal">
-        <div class="ci-icon">🕗</div>
-        <div class="ci-body">
-          <strong>School Timings</strong>
-          <p>Monday – Saturday: 7:30 AM – 2:30 PM</p>
+
+      <div class="who-right">
+        <div class="slide-num light">03</div>
+        <h2 class="reveal">Who <span class="gold">Runs It?</span></h2>
+        <div class="who-divider reveal delay-1"></div>
+
+        <div class="who-points">
+          <div class="who-point reveal delay-1">
+            <div class="point-icon"><i class="fa fa-hands-holding-circle"></i></div>
+            <div class="point-text">
+              <strong>A trusted Foundation</strong>
+              <span>Dedicated to spiritual education and inclusive social service across India and beyond.</span>
+            </div>
+          </div>
+          <div class="who-point reveal delay-2">
+            <div class="point-icon"><i class="fa fa-leaf"></i></div>
+            <div class="point-text">
+              <strong>Akram Vignan Mission</strong>
+              <span>Promotes scientific self-knowledge and value-based living inspired by Param Pujya Dada Bhagwan.</span>
+            </div>
+          </div>
+          <div class="who-point reveal delay-3">
+            <div class="point-icon"><i class="fa fa-heart"></i></div>
+            <div class="point-text">
+              <strong>Youth Development</strong>
+              <span>Gnanmandir Gurukul is a direct expression of DBF's mission — nurturing youth in academics and inner growth.</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="ci-row reveal">
-        <div class="ci-icon">🌐</div>
-        <div class="ci-body">
-          <strong>Website</strong>
-          <p>www.gyanmandirgurukul.edu.in</p>
+    </section>
+
+    <!-- ── SLIDE 4 — RELATED INSTITUTIONS ── -->
+    <section class="slide slide-related" data-slide="4">
+      <div class="slide-header centered">
+        <div class="slide-num">04</div>
+        <h2 class="reveal">Related Institutions <span class="gold">Nearby</span></h2>
+        <p class="slide-subtitle reveal delay-1">A complete ecosystem of education, spirit, and community — all within reach</p>
+      </div>
+
+      <div class="institutions-row reveal delay-2">
+        <div class="institution-card trimandir">
+          <div class="inst-top">
+            <div class="inst-icon"><i class="fa fa-place-of-worship"></i></div>
+            <span class="inst-badge spiritual">Spiritual Landmark</span>
+          </div>
+          <h3>Trimandir Temple</h3>
+          <p class="inst-subtitle">Non-Sectarian Spiritual Temple</p>
+          <div class="inst-divider"></div>
+          <p class="inst-desc">An open sanctuary welcoming people of all faiths. Trimandir embodies the principle that all paths lead to the same truth — a place of peace, reflection, and community belonging.</p>
+          <ul class="inst-features">
+            <li><i class="fa fa-check"></i> Open to all religions</li>
+            <li><i class="fa fa-check"></i> Daily meditation sessions</li>
+            <li><i class="fa fa-check"></i> Community gatherings</li>
+          </ul>
+        </div>
+
+        <div class="institution-connector">
+          <div class="connector-circle"><i class="fa fa-plus"></i></div>
+        </div>
+
+        <div class="institution-card amba">
+          <div class="inst-top">
+            <div class="inst-icon"><i class="fa fa-school"></i></div>
+            <span class="inst-badge educational">Educational Partner</span>
+          </div>
+          <h3>Amba School for Excellence</h3>
+          <p class="inst-subtitle">Holistic Educational Institution</p>
+          <div class="inst-divider"></div>
+          <p class="inst-desc">A school that blends academic rigour with character formation, creativity, and spiritual values. It prepares students not just for exams but for life — a natural companion to the Gurukul.</p>
+          <ul class="inst-features">
+            <li><i class="fa fa-check"></i> Holistic curriculum</li>
+            <li><i class="fa fa-check"></i> Character-first approach</li>
+            <li><i class="fa fa-check"></i> Value-based education</li>
+          </ul>
         </div>
       </div>
-    </div>
 
-    <div class="contact-form reveal">
-      <div class="form-row">
-        <input type="text" placeholder="Parent / Guardian Name"/>
-        <input type="text" placeholder="Student Name"/>
+      <div class="ecosystem-note reveal delay-3">
+        <i class="fa fa-circle-nodes"></i>
+        Together, these three institutions form a <strong>complete ecosystem</strong> of spiritual, educational, and residential excellence in Adalaj.
       </div>
-      <div class="form-row">
-        <input type="email" placeholder="Email Address"/>
-        <input type="tel" placeholder="Phone Number"/>
+    </section>
+
+    <!-- ── SLIDE 5 — PURPOSE & VALUE ── -->
+    <section class="slide slide-purpose" data-slide="5">
+      <div class="slide-bg-orb orb-p1"></div>
+
+      <div class="purpose-header reveal">
+        <div class="slide-num light">05</div>
+        <h2>Why <span class="gold">Gnanmandir?</span></h2>
+        <p class="purpose-tagline">Building Tomorrow's Leaders — Today.</p>
       </div>
-      <input type="text" placeholder="Student's Class / Grade"/>
-      <textarea rows="4" placeholder="Your Message or Enquiry…"></textarea>
-      <button class="submit-btn">🙏 &nbsp; Send Enquiry</button>
-    </div>
-  </div>
-</section>
 
-<!-- ══════════ FOOTER ══════════ -->
-<footer>
-  <span class="footer-om">ॐ</span>
-  <div class="footer-name">Gyan Mandir Gurukul</div>
-  <div class="footer-loc">🇮🇳 &nbsp; Ahmedabad · Gujarat · India</div>
-  <div class="footer-divider"></div>
-  <nav class="footer-nav">
-    <a href="#about">About</a>
-    <a href="#vision">Vision</a>
-    <a href="#facilities">Facilities</a>
-    <a href="#activities">Activities</a>
-    <a href="#why">Why Us</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <p class="footer-copy">© 2025 Gyan Mandir Gurukul, Ahmedabad, Gujarat, India. All Rights Reserved.</p>
-  <p class="footer-sanskrit">विद्यायां अमृतमश्नुते — Through Knowledge, One Attains Immortality</p>
-  <p style="margin-top:12px;font-family:'Josefin Sans',sans-serif;font-size:0.68rem;color:rgba(255,255,255,0.15);letter-spacing:0.1em;">🇮🇳 JAI HIND</p>
-</footer>
+      <div class="purpose-grid reveal delay-1">
+        <div class="purpose-card">
+          <div class="purpose-num">01</div>
+          <div class="purpose-icon"><i class="fa fa-graduation-cap"></i></div>
+          <h4>Academic Focus</h4>
+          <p>Structured residential life removes distractions and creates ideal conditions for deep, focused study and intellectual growth.</p>
+        </div>
+        <div class="purpose-card">
+          <div class="purpose-num">02</div>
+          <div class="purpose-icon"><i class="fa fa-hands-holding-circle"></i></div>
+          <h4>Character Formation</h4>
+          <p>Daily routines, mentorship, and community living build integrity, discipline, and emotional resilience in every student.</p>
+        </div>
+        <div class="purpose-card">
+          <div class="purpose-num">03</div>
+          <div class="purpose-icon"><i class="fa fa-person-praying"></i></div>
+          <h4>Spiritual Foundation</h4>
+          <p>Surrounded by Trimandir and DBF values, students develop an inner compass that guides their lifelong decisions.</p>
+        </div>
+        <div class="purpose-card">
+          <div class="purpose-num">04</div>
+          <div class="purpose-icon"><i class="fa fa-house-heart"></i></div>
+          <h4>Family Environment</h4>
+          <p>Far from home yet never alone — wardens, peers, and a caring community ensure every student feels truly supported.</p>
+        </div>
+      </div>
 
-<script src="css/script.js"></script>
+      <div class="purpose-stat-row reveal delay-2">
+        <div class="stat-item">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Safe Environment</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">24/7</span>
+          <span class="stat-label">Student Support</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">3-in-1</span>
+          <span class="stat-label">Ecosystem Access</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Values Instilled</span>
+        </div>
+      </div>
+    </section>
 
+    <!-- ── SLIDE 6 — CONCLUSION ── -->
+    <section class="slide slide-conclusion" data-slide="6">
+      <div class="slide-bg-orb orb-c1"></div>
+      <div class="slide-bg-orb orb-c2"></div>
+      <div class="slide-bg-orb orb-c3"></div>
+
+      <div class="conclusion-top reveal">
+        <h2 class="conclusion-title">
+          A Community Built on<br/>
+          <span class="gold big">Education + Values</span>
+        </h2>
+        <p class="conclusion-location">
+          <i class="fa fa-location-dot"></i>
+          Gnanmandir Gurukul · Adalaj, Gandhinagar, Gujarat
+        </p>
+      </div>
+
+      <div class="conclusion-pillars reveal delay-2">
+        <div class="pillar">
+          <div class="pillar-icon"><i class="fa fa-house"></i></div>
+          <h4>Safe &amp; Supportive</h4>
+          <p>A welcoming home for boys, ensuring security, comfort, and well-being throughout their studies.</p>
+        </div>
+        <div class="pillar featured">
+          <div class="pillar-icon"><i class="fa fa-graduation-cap"></i></div>
+          <h4>Academic Excellence</h4>
+          <p>Structured routines, mentor support, and a distraction-free environment for scholarly achievement.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><i class="fa fa-leaf"></i></div>
+          <h4>Values &amp; Vision</h4>
+          <p>Rooted in DBF's ethos — shaping responsible, compassionate citizens of tomorrow.</p>
+        </div>
+      </div>
+
+      <div class="conclusion-cta reveal delay-3">
+        <div class="cta-box">
+          <i class="fa fa-star"></i>
+          <span>Part of the <strong>Dada Bhagwan Foundation</strong> — a larger community focused on Education + Spirituality + Service</span>
+          <i class="fa fa-star"></i>
+        </div>
+      </div>
+
+      <div class="slide-footer light">
+        Thank You &nbsp;·&nbsp; Gnanmandir Gurukul &nbsp;·&nbsp; Dada Bhagwan Foundation &nbsp;·&nbsp; Adalaj, Gujarat
+      </div>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- NAV ARROWS -->
+  <button class="nav-arrow prev" id="prevBtn" aria-label="Previous slide">
+    <i class="fa fa-chevron-left"></i>
+  </button>
+  <button class="nav-arrow next" id="nextBtn" aria-label="Next slide">
+    <i class="fa fa-chevron-right"></i>
+  </button>
+
+  <script src="script.js"></script>
 </body>
 </html>
