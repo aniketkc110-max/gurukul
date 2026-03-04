@@ -3,329 +3,365 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gnanmandir Gurukul — Adalaj</title>
+  <title>Gnanmandir Gurukul — Adalaj, Gandhinagar</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
 
-  <!-- PROGRESS BAR -->
-  <div class="progress-bar" id="progressBar"></div>
-
-  <!-- SLIDE COUNTER -->
-  <div class="slide-counter">
-    <span id="currentSlide">1</span><span class="sep">/</span><span id="totalSlides">6</span>
-  </div>
-
-  <!-- NAV DOTS -->
-  <nav class="nav-dots" id="navDots"></nav>
-
-  <!-- KEYBOARD HINT -->
-  <div class="key-hint" id="keyHint">
-    <i class="fa fa-keyboard"></i> Arrow keys to navigate
-  </div>
-
-  <!-- ═══════════════════════════════ SLIDES ═══════════════════════════════ -->
-  <div class="slides-wrapper" id="slidesWrapper">
-
-    <!-- ── SLIDE 1 — TITLE ── -->
-    <section class="slide slide-title active" data-slide="1">
-      <div class="slide-bg-orb orb-1"></div>
-      <div class="slide-bg-orb orb-2"></div>
-      <div class="slide-bg-orb orb-3"></div>
-
-      <div class="title-left-panel">
-        <div class="panel-logo">
-          <i class="fa fa-graduation-cap"></i>
-        </div>
-        <div class="panel-label">GURUKUL</div>
-        <div class="panel-sub">EST. ADALAJ, GUJARAT</div>
-        <div class="panel-year">२०२४</div>
-      </div>
-
-      <div class="title-content">
-        <div class="title-eyebrow reveal">Residential Learning Community</div>
-        <h1 class="title-main reveal delay-1">
-          Gnanmandir<br/><span class="gold">Gurukul</span>
-        </h1>
-        <div class="title-divider reveal delay-2"></div>
-        <p class="title-location reveal delay-2">
-          <i class="fa fa-location-dot"></i> Adalaj (Gandhinagar), Gujarat
-        </p>
-        <p class="title-tagline reveal delay-3">
-          "Where Knowledge Meets Character"
-        </p>
-        <div class="title-badges reveal delay-4">
-          <span class="badge"><i class="fa fa-shield-halved"></i> Safe</span>
-          <span class="badge"><i class="fa fa-book-open"></i> Academic</span>
-          <span class="badge"><i class="fa fa-heart"></i> Values-Driven</span>
+  <!-- ══ NAVBAR ══ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span class="logo-icon"><i class="fa fa-graduation-cap"></i></span>
+        <div class="logo-text">
+          <span class="logo-main">Gnanmandir Gurukul</span>
+          <span class="logo-sub">Adalaj, Gujarat</span>
         </div>
       </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#home"         class="nav-link">Home</a>
+        <a href="#about"        class="nav-link">About</a>
+        <a href="#who-runs"     class="nav-link">Foundation</a>
+        <a href="#institutions" class="nav-link">Institutions</a>
+        <a href="#purpose"      class="nav-link">Purpose</a>
+        <a href="#contact"      class="nav-link nav-cta">Contact</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-      <div class="slide-footer">
-        A Residential Learning Community for Boys &nbsp;·&nbsp; Dada Bhagwan Foundation
+  <!-- ══ HERO ══ -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-orb orb-1"></div>
+      <div class="hero-orb orb-2"></div>
+      <div class="hero-orb orb-3"></div>
+      <div class="hero-grid"></div>
+    </div>
+
+    <div class="hero-left">
+      <div class="hero-badge fade-up">
+        <i class="fa fa-location-dot"></i>
+        Simandhar City, Adalaj · Gandhinagar, Gujarat
       </div>
-    </section>
-
-    <!-- ── SLIDE 2 — WHAT IS IT? ── -->
-    <section class="slide slide-what" data-slide="2">
-      <div class="slide-header">
-        <div class="slide-num">02</div>
-        <h2 class="slide-title-text reveal">What Is <span class="gold">Gnanmandir Gurukul?</span></h2>
-        <p class="slide-subtitle reveal delay-1">A sanctuary where boys grow into scholars and citizens of character</p>
+      <h1 class="hero-title fade-up delay-1">
+        Gnanmandir<br/><span class="gold">Gurukul</span>
+      </h1>
+      <p class="hero-tagline fade-up delay-2">
+        Where <em>Knowledge</em> Meets <em>Character</em>
+      </p>
+      <p class="hero-desc fade-up delay-3">
+        A residential gurukul for boys providing secure accommodation, structured learning, and spiritual development — part of the Dada Bhagwan Foundation community in Adalaj, Gujarat.
+      </p>
+      <div class="hero-actions fade-up delay-4">
+        <a href="#about"   class="btn btn-primary"><i class="fa fa-circle-info"></i> Learn More</a>
+        <a href="#contact" class="btn btn-outline"><i class="fa fa-envelope"></i> Get in Touch</a>
       </div>
+      <div class="hero-stats fade-up delay-5">
+        <div class="hstat"><span class="hstat-n">100%</span><span class="hstat-l">Safe &amp; Secure</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-n">24/7</span><span class="hstat-l">Student Support</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-n">3-in-1</span><span class="hstat-l">Ecosystem</span></div>
+      </div>
+    </div>
 
-      <div class="cards-grid reveal delay-2">
-        <div class="info-card">
-          <div class="card-icon-wrap saffron">
-            <i class="fa fa-house"></i>
-          </div>
-          <h3>Residential Gurukul</h3>
-          <p>A structured hostel environment specifically designed for boys — providing safe, secure, and nurturing accommodation while they pursue their education.</p>
-          <div class="card-tag">Housing & Boarding</div>
+    <div class="hero-right fade-up delay-3">
+      <div class="hero-card">
+        <div class="hcard-top">
+          <div class="hcard-icon"><i class="fa fa-graduation-cap"></i></div>
+          <span class="hcard-label">Residential Gurukul</span>
         </div>
+        <div class="hcard-features">
+          <div class="hf"><i class="fa fa-check-circle"></i> Boys' Hostel &amp; Boarding</div>
+          <div class="hf"><i class="fa fa-check-circle"></i> Structured Academic Environment</div>
+          <div class="hf"><i class="fa fa-check-circle"></i> Character &amp; Spiritual Development</div>
+          <div class="hf"><i class="fa fa-check-circle"></i> Near Trimandir &amp; Amba School</div>
+          <div class="hf"><i class="fa fa-check-circle"></i> Dada Bhagwan Foundation Oversight</div>
+          <div class="hf"><i class="fa fa-check-circle"></i> Safe, Nurturing Community</div>
+        </div>
+        <div class="hcard-quote">
+          <i class="fa fa-quote-left"></i>
+          "A place where students grow academically, spiritually, and as human beings."
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="info-card featured">
-          <div class="card-icon-wrap gold">
-            <i class="fa fa-location-dot"></i>
-          </div>
+  <!-- ══ ABOUT ══ -->
+  <section class="section section-light" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">What Is It?</span>
+        <h2 class="section-title">About <span class="gold">Gnanmandir Gurukul</span></h2>
+        <p class="section-desc">A complete residential learning community designed to help boys thrive academically, personally, and spiritually.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card scroll-reveal">
+          <div class="acard-icon saffron"><i class="fa fa-house"></i></div>
+          <h3>Residential Hostel</h3>
+          <p>A structured hostel environment specifically designed for boys — providing safe, secure, and nurturing accommodation while they pursue their education away from home.</p>
+          <div class="acard-tag">Housing &amp; Boarding</div>
+        </div>
+        <div class="about-card featured scroll-reveal delay-1">
+          <div class="acard-icon gold"><i class="fa fa-location-dot"></i></div>
           <h3>Prime Location</h3>
-          <p>Nestled near Simandhar City, Adalaj, Gujarat — within a vibrant spiritual and educational community that fosters focus and growth.</p>
-          <div class="card-tag">Adalaj, Gujarat</div>
+          <p>Nestled near Simandhar City, Adalaj, Gujarat — within a vibrant spiritual and educational community that fosters focus, discipline, and meaningful growth.</p>
+          <div class="acard-tag light">Adalaj, Gandhinagar</div>
         </div>
-
-        <div class="info-card">
-          <div class="card-icon-wrap saffron">
-            <i class="fa fa-graduation-cap"></i>
-          </div>
-          <h3>Student Support Hub</h3>
-          <p>Beyond just housing, Gnanmandir offers holistic support: study discipline, character development, and a family-like atmosphere away from home.</p>
-          <div class="card-tag">Holistic Support</div>
+        <div class="about-card scroll-reveal delay-2">
+          <div class="acard-icon saffron"><i class="fa fa-hands-holding-circle"></i></div>
+          <h3>Holistic Support</h3>
+          <p>Beyond just housing, Gnanmandir offers comprehensive support: study discipline, character development, mentorship, and a family-like atmosphere far from home.</p>
+          <div class="acard-tag">Holistic Development</div>
         </div>
       </div>
 
-      <blockquote class="slide-quote reveal delay-3">
-        <i class="fa fa-quote-left"></i>
-        A place where students grow academically, spiritually, and as complete human beings.
+      <blockquote class="about-quote scroll-reveal">
+        <div class="quote-bar"></div>
+        <div class="quote-content">
+          <i class="fa fa-quote-left quote-icon"></i>
+          <p>"Far from home yet never alone — Gnanmandir Gurukul is where boys discover their potential and their purpose."</p>
+        </div>
       </blockquote>
-    </section>
+    </div>
+  </section>
 
-    <!-- ── SLIDE 3 — WHO RUNS IT? ── -->
-    <section class="slide slide-who" data-slide="3">
-      <div class="slide-bg-orb orb-who-1"></div>
-      <div class="slide-bg-orb orb-who-2"></div>
-
-      <div class="who-left reveal">
-        <div class="dbf-emblem">
-          <div class="emblem-ring">
-            <i class="fa fa-person-praying"></i>
-          </div>
-          <div class="emblem-label">DBF</div>
-          <div class="emblem-full">Dada Bhagwan Foundation</div>
-        </div>
-      </div>
-
-      <div class="who-right">
-        <div class="slide-num light">03</div>
-        <h2 class="reveal">Who <span class="gold">Runs It?</span></h2>
-        <div class="who-divider reveal delay-1"></div>
-
-        <div class="who-points">
-          <div class="who-point reveal delay-1">
-            <div class="point-icon"><i class="fa fa-hands-holding-circle"></i></div>
-            <div class="point-text">
-              <strong>A trusted Foundation</strong>
-              <span>Dedicated to spiritual education and inclusive social service across India and beyond.</span>
+  <!-- ══ WHO RUNS IT ══ -->
+  <section class="section section-dark" id="who-runs">
+    <div class="container">
+      <div class="who-layout">
+        <div class="who-emblem-col scroll-reveal">
+          <div class="dbf-card">
+            <div class="dbf-ring">
+              <i class="fa fa-person-praying"></i>
             </div>
-          </div>
-          <div class="who-point reveal delay-2">
-            <div class="point-icon"><i class="fa fa-leaf"></i></div>
-            <div class="point-text">
-              <strong>Akram Vignan Mission</strong>
-              <span>Promotes scientific self-knowledge and value-based living inspired by Param Pujya Dada Bhagwan.</span>
-            </div>
-          </div>
-          <div class="who-point reveal delay-3">
-            <div class="point-icon"><i class="fa fa-heart"></i></div>
-            <div class="point-text">
-              <strong>Youth Development</strong>
-              <span>Gnanmandir Gurukul is a direct expression of DBF's mission — nurturing youth in academics and inner growth.</span>
+            <h3 class="dbf-name">Dada Bhagwan Foundation</h3>
+            <p class="dbf-short">Spiritual Education &amp; Social Service</p>
+            <div class="dbf-divider"></div>
+            <div class="dbf-badges">
+              <span class="dbf-badge"><i class="fa fa-globe"></i> India &amp; Worldwide</span>
+              <span class="dbf-badge"><i class="fa fa-heart"></i> Non-Profit Trust</span>
+              <span class="dbf-badge"><i class="fa fa-book-open"></i> Akram Vignan</span>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ── SLIDE 4 — RELATED INSTITUTIONS ── -->
-    <section class="slide slide-related" data-slide="4">
-      <div class="slide-header centered">
-        <div class="slide-num">04</div>
-        <h2 class="reveal">Related Institutions <span class="gold">Nearby</span></h2>
-        <p class="slide-subtitle reveal delay-1">A complete ecosystem of education, spirit, and community — all within reach</p>
-      </div>
+        <div class="who-content-col">
+          <span class="section-eyebrow light scroll-reveal">Who Runs It?</span>
+          <h2 class="section-title light scroll-reveal delay-1">Connected with<br/><span class="gold">Dada Bhagwan Foundation</span></h2>
 
-      <div class="institutions-row reveal delay-2">
-        <div class="institution-card trimandir">
-          <div class="inst-top">
-            <div class="inst-icon"><i class="fa fa-place-of-worship"></i></div>
-            <span class="inst-badge spiritual">Spiritual Landmark</span>
+          <div class="who-points">
+            <div class="who-point scroll-reveal delay-1">
+              <div class="wp-icon"><i class="fa fa-hands-holding-circle"></i></div>
+              <div class="wp-body">
+                <h4>A Trusted Foundation</h4>
+                <p>DBF is a trust dedicated to spiritual education and inclusive social service across India and around the world, guided by values of compassion and inner knowledge.</p>
+              </div>
+            </div>
+            <div class="who-point scroll-reveal delay-2">
+              <div class="wp-icon"><i class="fa fa-leaf"></i></div>
+              <div class="wp-body">
+                <h4>Akram Vignan Mission</h4>
+                <p>Promotes scientific self-knowledge and value-based living inspired by Param Pujya Dada Bhagwan — a path of awareness, integrity, and equanimity in daily life.</p>
+              </div>
+            </div>
+            <div class="who-point scroll-reveal delay-3">
+              <div class="wp-icon"><i class="fa fa-seedling"></i></div>
+              <div class="wp-body">
+                <h4>Youth Development</h4>
+                <p>Gnanmandir Gurukul is a direct expression of DBF's mission — creating environments where young boys grow not just academically but as complete, grounded human beings.</p>
+              </div>
+            </div>
           </div>
-          <h3>Trimandir Temple</h3>
-          <p class="inst-subtitle">Non-Sectarian Spiritual Temple</p>
-          <div class="inst-divider"></div>
-          <p class="inst-desc">An open sanctuary welcoming people of all faiths. Trimandir embodies the principle that all paths lead to the same truth — a place of peace, reflection, and community belonging.</p>
-          <ul class="inst-features">
-            <li><i class="fa fa-check"></i> Open to all religions</li>
-            <li><i class="fa fa-check"></i> Daily meditation sessions</li>
-            <li><i class="fa fa-check"></i> Community gatherings</li>
-          </ul>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="institution-connector">
-          <div class="connector-circle"><i class="fa fa-plus"></i></div>
-        </div>
+  <!-- ══ RELATED INSTITUTIONS ══ -->
+  <section class="section section-cream" id="institutions">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">The Ecosystem</span>
+        <h2 class="section-title">Related Institutions <span class="gold">Nearby</span></h2>
+        <p class="section-desc">Three pillars of one vision — Gnanmandir Gurukul sits at the heart of a complete community of learning, spirit, and service.</p>
+      </div>
 
-        <div class="institution-card amba">
-          <div class="inst-top">
-            <div class="inst-icon"><i class="fa fa-school"></i></div>
-            <span class="inst-badge educational">Educational Partner</span>
+      <div class="inst-grid">
+        <div class="inst-card gurukul-self scroll-reveal">
+          <div class="inst-header saffron-bg">
+            <div class="inst-icon-wrap"><i class="fa fa-house"></i></div>
+            <span class="inst-role">You Are Here</span>
           </div>
-          <h3>Amba School for Excellence</h3>
-          <p class="inst-subtitle">Holistic Educational Institution</p>
-          <div class="inst-divider"></div>
-          <p class="inst-desc">A school that blends academic rigour with character formation, creativity, and spiritual values. It prepares students not just for exams but for life — a natural companion to the Gurukul.</p>
-          <ul class="inst-features">
-            <li><i class="fa fa-check"></i> Holistic curriculum</li>
-            <li><i class="fa fa-check"></i> Character-first approach</li>
-            <li><i class="fa fa-check"></i> Value-based education</li>
-          </ul>
+          <div class="inst-body">
+            <h3>Gnanmandir Gurukul</h3>
+            <p class="inst-type">Residential Boys' Hostel</p>
+            <p class="inst-desc">Safe accommodation, study support, and community living for boys pursuing education in Adalaj.</p>
+            <ul class="inst-list">
+              <li><i class="fa fa-check"></i> Structured daily routine</li>
+              <li><i class="fa fa-check"></i> Mentorship &amp; guidance</li>
+              <li><i class="fa fa-check"></i> Spiritual development</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="inst-card trimandir scroll-reveal delay-1">
+          <div class="inst-header navy-bg">
+            <div class="inst-icon-wrap"><i class="fa fa-place-of-worship"></i></div>
+            <span class="inst-role">Spiritual Landmark</span>
+          </div>
+          <div class="inst-body">
+            <h3>Trimandir Temple</h3>
+            <p class="inst-type">Non-Sectarian Spiritual Temple</p>
+            <p class="inst-desc">An open sanctuary welcoming people of all faiths — a place of peace, reflection, and community belonging for everyone.</p>
+            <ul class="inst-list">
+              <li><i class="fa fa-check"></i> Open to all religions</li>
+              <li><i class="fa fa-check"></i> Daily meditation &amp; prayer</li>
+              <li><i class="fa fa-check"></i> Community gatherings</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="inst-card amba scroll-reveal delay-2">
+          <div class="inst-header gold-bg">
+            <div class="inst-icon-wrap"><i class="fa fa-school"></i></div>
+            <span class="inst-role">Educational Partner</span>
+          </div>
+          <div class="inst-body">
+            <h3>Amba School for Excellence</h3>
+            <p class="inst-type">Holistic Educational Institution</p>
+            <p class="inst-desc">A school that blends academic rigour with character formation, creativity, and spiritual values — preparing students not just for exams but for life.</p>
+            <ul class="inst-list">
+              <li><i class="fa fa-check"></i> Holistic curriculum</li>
+              <li><i class="fa fa-check"></i> Character-first approach</li>
+              <li><i class="fa fa-check"></i> Value-based education</li>
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div class="ecosystem-note reveal delay-3">
+      <div class="ecosystem-banner scroll-reveal">
         <i class="fa fa-circle-nodes"></i>
-        Together, these three institutions form a <strong>complete ecosystem</strong> of spiritual, educational, and residential excellence in Adalaj.
+        <p>Together, these three institutions form a <strong>complete ecosystem</strong> of spiritual, educational, and residential excellence in Adalaj — a rare and powerful community for young learners.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ── SLIDE 5 — PURPOSE & VALUE ── -->
-    <section class="slide slide-purpose" data-slide="5">
-      <div class="slide-bg-orb orb-p1"></div>
-
-      <div class="purpose-header reveal">
-        <div class="slide-num light">05</div>
-        <h2>Why <span class="gold">Gnanmandir?</span></h2>
-        <p class="purpose-tagline">Building Tomorrow's Leaders — Today.</p>
+  <!-- ══ PURPOSE & VALUE ══ -->
+  <section class="section section-dark" id="purpose">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow light scroll-reveal">Purpose &amp; Value</span>
+        <h2 class="section-title light scroll-reveal delay-1">Why <span class="gold">Gnanmandir Gurukul?</span></h2>
+        <p class="section-desc light scroll-reveal delay-2">Building tomorrow's leaders — today. Four pillars that make Gnanmandir Gurukul a truly transformative environment.</p>
       </div>
 
-      <div class="purpose-grid reveal delay-1">
-        <div class="purpose-card">
+      <div class="purpose-grid">
+        <div class="purpose-card scroll-reveal">
           <div class="purpose-num">01</div>
-          <div class="purpose-icon"><i class="fa fa-graduation-cap"></i></div>
-          <h4>Academic Focus</h4>
-          <p>Structured residential life removes distractions and creates ideal conditions for deep, focused study and intellectual growth.</p>
+          <div class="purpose-icon-wrap"><i class="fa fa-graduation-cap"></i></div>
+          <h3>Academic Focus</h3>
+          <p>Structured residential life removes distractions and creates ideal conditions for deep, focused study and intellectual growth every day.</p>
         </div>
-        <div class="purpose-card">
+        <div class="purpose-card scroll-reveal delay-1">
           <div class="purpose-num">02</div>
-          <div class="purpose-icon"><i class="fa fa-hands-holding-circle"></i></div>
-          <h4>Character Formation</h4>
-          <p>Daily routines, mentorship, and community living build integrity, discipline, and emotional resilience in every student.</p>
+          <div class="purpose-icon-wrap"><i class="fa fa-hands-holding-circle"></i></div>
+          <h3>Character Formation</h3>
+          <p>Daily routines, peer community, and dedicated mentorship build integrity, discipline, and emotional resilience in every student.</p>
         </div>
-        <div class="purpose-card">
+        <div class="purpose-card scroll-reveal delay-2">
           <div class="purpose-num">03</div>
-          <div class="purpose-icon"><i class="fa fa-person-praying"></i></div>
-          <h4>Spiritual Foundation</h4>
-          <p>Surrounded by Trimandir and DBF values, students develop an inner compass that guides their lifelong decisions.</p>
+          <div class="purpose-icon-wrap"><i class="fa fa-person-praying"></i></div>
+          <h3>Spiritual Foundation</h3>
+          <p>Surrounded by Trimandir and DBF values, students develop an inner compass that guides their decisions throughout life.</p>
         </div>
-        <div class="purpose-card">
+        <div class="purpose-card scroll-reveal delay-3">
           <div class="purpose-num">04</div>
-          <div class="purpose-icon"><i class="fa fa-house-heart"></i></div>
-          <h4>Family Environment</h4>
-          <p>Far from home yet never alone — wardens, peers, and a caring community ensure every student feels truly supported.</p>
+          <div class="purpose-icon-wrap"><i class="fa fa-house-heart"></i></div>
+          <h3>Family Environment</h3>
+          <p>Far from home yet never alone — wardens, mentors, and a caring community ensure every student feels truly seen and supported.</p>
         </div>
       </div>
 
-      <div class="purpose-stat-row reveal delay-2">
+      <div class="stats-row scroll-reveal">
         <div class="stat-item">
-          <span class="stat-num">100%</span>
-          <span class="stat-label">Safe Environment</span>
+          <span class="stat-n">100%</span>
+          <span class="stat-l">Safe Environment</span>
         </div>
-        <div class="stat-divider"></div>
+        <div class="stat-sep"></div>
         <div class="stat-item">
-          <span class="stat-num">24/7</span>
-          <span class="stat-label">Student Support</span>
+          <span class="stat-n">24/7</span>
+          <span class="stat-l">Student Support</span>
         </div>
-        <div class="stat-divider"></div>
+        <div class="stat-sep"></div>
         <div class="stat-item">
-          <span class="stat-num">3-in-1</span>
-          <span class="stat-label">Ecosystem Access</span>
+          <span class="stat-n">3-in-1</span>
+          <span class="stat-l">Ecosystem Access</span>
         </div>
-        <div class="stat-divider"></div>
+        <div class="stat-sep"></div>
         <div class="stat-item">
-          <span class="stat-num">∞</span>
-          <span class="stat-label">Values Instilled</span>
+          <span class="stat-n">∞</span>
+          <span class="stat-l">Values Instilled</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ── SLIDE 6 — CONCLUSION ── -->
-    <section class="slide slide-conclusion" data-slide="6">
-      <div class="slide-bg-orb orb-c1"></div>
-      <div class="slide-bg-orb orb-c2"></div>
-      <div class="slide-bg-orb orb-c3"></div>
-
-      <div class="conclusion-top reveal">
-        <h2 class="conclusion-title">
+  <!-- ══ CONTACT / CTA ══ -->
+  <section class="section section-cta" id="contact">
+    <div class="cta-orb cta-orb-1"></div>
+    <div class="cta-orb cta-orb-2"></div>
+    <div class="container cta-container">
+      <div class="cta-content scroll-reveal">
+        <h2 class="cta-title">
           A Community Built on<br/>
-          <span class="gold big">Education + Values</span>
+          <span class="gold">Education + Values</span>
         </h2>
-        <p class="conclusion-location">
-          <i class="fa fa-location-dot"></i>
-          Gnanmandir Gurukul · Adalaj, Gandhinagar, Gujarat
-        </p>
-      </div>
-
-      <div class="conclusion-pillars reveal delay-2">
-        <div class="pillar">
-          <div class="pillar-icon"><i class="fa fa-house"></i></div>
-          <h4>Safe &amp; Supportive</h4>
-          <p>A welcoming home for boys, ensuring security, comfort, and well-being throughout their studies.</p>
-        </div>
-        <div class="pillar featured">
-          <div class="pillar-icon"><i class="fa fa-graduation-cap"></i></div>
-          <h4>Academic Excellence</h4>
-          <p>Structured routines, mentor support, and a distraction-free environment for scholarly achievement.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon"><i class="fa fa-leaf"></i></div>
-          <h4>Values &amp; Vision</h4>
-          <p>Rooted in DBF's ethos — shaping responsible, compassionate citizens of tomorrow.</p>
-        </div>
-      </div>
-
-      <div class="conclusion-cta reveal delay-3">
-        <div class="cta-box">
-          <i class="fa fa-star"></i>
-          <span>Part of the <strong>Dada Bhagwan Foundation</strong> — a larger community focused on Education + Spirituality + Service</span>
-          <i class="fa fa-star"></i>
+        <p class="cta-sub">Part of the Dada Bhagwan Foundation — a larger mission focused on Education, Spirituality, and Service to all.</p>
+        <div class="cta-info-cards">
+          <div class="cta-info">
+            <i class="fa fa-location-dot"></i>
+            <div>
+              <strong>Location</strong>
+              <span>Near Simandhar City, Adalaj,<br/>Gandhinagar, Gujarat, India</span>
+            </div>
+          </div>
+          <div class="cta-info">
+            <i class="fa fa-globe"></i>
+            <div>
+              <strong>Foundation</strong>
+              <span>Dada Bhagwan Foundation (DBF)<br/>dadabhagwan.org</span>
+            </div>
+          </div>
+          <div class="cta-info">
+            <i class="fa fa-users"></i>
+            <div>
+              <strong>For</strong>
+              <span>Boys seeking residential<br/>education in Adalaj, Gujarat</span>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="slide-footer light">
-        Thank You &nbsp;·&nbsp; Gnanmandir Gurukul &nbsp;·&nbsp; Dada Bhagwan Foundation &nbsp;·&nbsp; Adalaj, Gujarat
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <i class="fa fa-graduation-cap"></i>
+        <span>Gnanmandir Gurukul</span>
       </div>
-    </section>
-
-  </div><!-- /slides-wrapper -->
-
-  <!-- NAV ARROWS -->
-  <button class="nav-arrow prev" id="prevBtn" aria-label="Previous slide">
-    <i class="fa fa-chevron-left"></i>
-  </button>
-  <button class="nav-arrow next" id="nextBtn" aria-label="Next slide">
-    <i class="fa fa-chevron-right"></i>
-  </button>
+      <p class="footer-text">Adalaj (Gandhinagar), Gujarat &nbsp;·&nbsp; Dada Bhagwan Foundation &nbsp;·&nbsp; Where Knowledge Meets Character</p>
+      <p class="footer-copy">© 2024 Gnanmandir Gurukul. Part of the Dada Bhagwan Foundation.</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
