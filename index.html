@@ -3,366 +3,1076 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gnanmandir Gurukul — Adalaj, Gandhinagar</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <title>Gnanmandir Gurukul — Adalaj</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --saffron: #D4580A;
+      --gold:    #F5A623;
+      --navy:    #1A2A4A;
+      --navy2:   #0F1B30;
+      --cream:   #FDF6EC;
+      --white:   #FFFFFF;
+      --muted:   #6B7280;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: 'Outfit', sans-serif;
+      background: #000;
+    }
+
+    /* ── SLIDES WRAPPER ── */
+    #slides {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    /* ── EACH SLIDE ── */
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(40px);
+      overflow: hidden;
+    }
+    .slide.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+      z-index: 2;
+    }
+    .slide.exit-up {
+      opacity: 0;
+      transform: translateY(-40px);
+      z-index: 1;
+    }
+    .slide.exit-down {
+      opacity: 0;
+      transform: translateY(40px);
+      z-index: 1;
+    }
+
+    /* ── NAV DOTS (right side) ── */
+    #dots {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .dot.active {
+      background: var(--gold);
+      transform: scale(1.5);
+      box-shadow: 0 0 8px var(--gold);
+    }
+
+    /* ── ARROWS ── */
+    #arrowUp, #arrowDown {
+      position: fixed;
+      right: 20px;
+      z-index: 999;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(6px);
+    }
+    #arrowUp   { top: calc(50% - 80px); transform: translateY(-50%); }
+    #arrowDown { top: calc(50% + 80px); transform: translateY(-50%); }
+    #arrowUp:hover, #arrowDown:hover {
+      background: var(--saffron);
+      border-color: var(--saffron);
+      color: white;
+    }
+    #arrowUp:disabled, #arrowDown:disabled {
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    /* ── COUNTER ── */
+    #counter {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.3);
+      background: rgba(0,0,0,0.3);
+      padding: 4px 14px;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+    }
+
+    /* ── HINT ── */
+    #hint {
+      position: fixed;
+      bottom: 20px;
+      right: 70px;
+      z-index: 999;
+      font-size: 10px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 1px;
+      transition: opacity 0.5s ease;
+    }
+    #hint.hidden { opacity: 0; }
+
+    /* ══════════════════════════════════════════
+       SLIDE 1 — TITLE
+    ══════════════════════════════════════════ */
+    #s1 {
+      background: var(--navy2);
+      align-items: center;
+    }
+    .s1-left {
+      width: 320px;
+      min-height: 100%;
+      background: var(--saffron);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .s1-left::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: -100px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(180,60,0,0.3);
+    }
+    .s1-left::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; right: -80px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(245,166,35,0.25);
+    }
+    .s1-icon {
+      position: relative; z-index: 1;
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; color: white;
+    }
+    .s1-label {
+      position: relative; z-index: 1;
+      font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 7px;
+      text-transform: uppercase;
+    }
+    .s1-sub {
+      position: relative; z-index: 1;
+      font-size: 9px; color: rgba(255,255,255,0.55);
+      letter-spacing: 3px; text-transform: uppercase;
+    }
+    .s1-year {
+      position: relative; z-index: 1;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; color: rgba(255,255,255,0.4);
+      letter-spacing: 4px; margin-top: 8px;
+    }
+    .s1-right {
+      flex: 1;
+      padding: 60px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+    }
+    .s1-orb {
+      position: absolute;
+      top: -180px; right: -80px;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,88,10,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .s1-eyebrow {
+      font-size: 11px; font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 4px; text-transform: uppercase;
+    }
+    .s1-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 68px; font-weight: 700;
+      color: white; line-height: 1.0;
+    }
+    .s1-title span { color: var(--gold); }
+    .s1-line {
+      width: 80px; height: 3px;
+      background: linear-gradient(90deg, var(--saffron), var(--gold));
+      border-radius: 2px;
+    }
+    .s1-loc {
+      font-size: 14px; color: rgba(180,200,240,0.8);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .s1-loc i { color: var(--gold); }
+    .s1-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-style: italic;
+      color: rgba(253,227,181,0.8);
+    }
+    .s1-badges {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .badge {
+      padding: 6px 16px;
+      border: 1px solid rgba(245,166,35,0.3);
+      border-radius: 20px;
+      font-size: 11px; color: var(--gold);
+      background: rgba(245,166,35,0.07);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .s1-footer {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 10px 80px;
+      background: rgba(0,0,0,0.25);
+      font-size: 10px; letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════
+       SLIDE 2 — WHAT IS IT
+    ══════════════════════════════════════════ */
+    #s2 {
+      background: var(--cream);
+      flex-direction: column;
+      padding: 60px 80px 50px;
+      gap: 28px;
+    }
+    .s2-header { }
+    .eyebrow {
+      font-size: 11px; font-weight: 600;
+      color: var(--saffron);
+      letter-spacing: 4px; text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .slide-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px; font-weight: 700;
+      color: var(--navy); line-height: 1.1;
+    }
+    .slide-h2 span { color: var(--gold); }
+    .slide-sub {
+      margin-top: 6px;
+      font-size: 14px; font-weight: 300;
+      color: var(--muted);
+    }
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      flex: 1;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 26px 22px;
+      border: 1px solid rgba(200,160,100,0.2);
+      box-shadow: 0 4px 18px rgba(180,100,20,0.1);
+      position: relative; overflow: hidden;
+      transition: transform 0.25s ease;
+    }
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--saffron), var(--gold));
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card.dark { background: var(--navy); }
+    .card.dark h3 { color: white; }
+    .card.dark p  { color: rgba(200,215,240,0.75); }
+    .card-icon {
+      width: 50px; height: 50px;
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+    .ci-orange { background: rgba(212,88,10,0.1); color: var(--saffron); }
+    .ci-gold   { background: rgba(245,166,35,0.12); color: var(--gold); }
+    .card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--navy); margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 13px; font-weight: 300; line-height: 1.65;
+      color: var(--muted);
+    }
+    .card-tag {
+      display: inline-block; margin-top: 12px;
+      padding: 4px 12px; border-radius: 20px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border: 1px solid rgba(212,88,10,0.25);
+      background: rgba(212,88,10,0.06);
+      color: var(--saffron);
+    }
+    .card-tag.gold-tag {
+      border-color: rgba(245,166,35,0.3);
+      background: rgba(245,166,35,0.1);
+      color: var(--gold);
+    }
+    .s2-quote {
+      padding: 14px 20px;
+      background: rgba(212,88,10,0.06);
+      border-left: 3px solid var(--saffron);
+      border-radius: 0 8px 8px 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; font-style: italic;
+      color: var(--saffron);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .s2-quote i { font-size: 13px; opacity: 0.5; }
+
+    /* ══════════════════════════════════════════
+       SLIDE 3 — WHO RUNS IT
+    ══════════════════════════════════════════ */
+    #s3 {
+      background: var(--navy);
+      align-items: center;
+      padding: 60px 80px;
+      gap: 70px;
+    }
+    .s3-orb1 {
+      position: absolute;
+      top: -200px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,88,10,0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .s3-left {
+      flex-shrink: 0; width: 260px;
+      position: relative; z-index: 1;
+    }
+    .dbf-circle {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      background: rgba(212,88,10,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px; color: var(--gold);
+      margin: 0 auto 18px;
+      animation: glow 3s ease-in-out infinite;
+    }
+    @keyframes glow {
+      0%,100% { box-shadow: 0 0 30px rgba(245,166,35,0.2); }
+      50%      { box-shadow: 0 0 55px rgba(245,166,35,0.4); }
+    }
+    .dbf-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; font-weight: 700;
+      color: white; text-align: center; margin-bottom: 6px;
+    }
+    .dbf-tagline {
+      font-size: 11px; color: rgba(200,215,240,0.45);
+      text-align: center; margin-bottom: 18px;
+    }
+    .dbf-tags {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .dbf-tag {
+      padding: 7px 14px;
+      background: rgba(245,166,35,0.08);
+      border: 1px solid rgba(245,166,35,0.18);
+      border-radius: 8px;
+      font-size: 12px; color: var(--gold);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .s3-right {
+      flex: 1;
+      position: relative; z-index: 1;
+    }
+    .light-eyebrow {
+      font-size: 11px; font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 4px; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .s3-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px; font-weight: 700;
+      color: white; line-height: 1.15;
+      margin-bottom: 28px;
+    }
+    .s3-h2 span { color: var(--gold); }
+    .points { display: flex; flex-direction: column; gap: 14px; }
+    .point {
+      display: flex; gap: 14px;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      transition: background 0.25s;
+    }
+    .point:hover {
+      background: rgba(212,88,10,0.1);
+      border-color: rgba(212,88,10,0.3);
+    }
+    .point-ico {
+      width: 38px; height: 38px; flex-shrink: 0;
+      border-radius: 8px;
+      background: rgba(245,166,35,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; color: var(--gold);
+    }
+    .point strong {
+      display: block;
+      font-size: 13px; font-weight: 600; color: white;
+      margin-bottom: 3px;
+    }
+    .point span {
+      font-size: 12px; font-weight: 300; color: rgba(200,215,240,0.7);
+      line-height: 1.55;
+    }
+
+    /* ══════════════════════════════════════════
+       SLIDE 4 — INSTITUTIONS
+    ══════════════════════════════════════════ */
+    #s4 {
+      background: var(--cream);
+      flex-direction: column;
+      padding: 50px 80px 44px;
+      gap: 24px;
+    }
+    .inst-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      flex: 1;
+    }
+    .inst-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(200,160,100,0.2);
+      box-shadow: 0 4px 18px rgba(180,100,20,0.1);
+      background: white;
+      transition: transform 0.25s ease;
+    }
+    .inst-card:hover { transform: translateY(-4px); }
+    .inst-head {
+      padding: 18px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .ih-saffron { background: var(--saffron); }
+    .ih-navy    { background: var(--navy); }
+    .ih-navylt  { background: #243B6A; }
+    .inst-ico {
+      width: 38px; height: 38px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; color: white;
+    }
+    .inst-role {
+      font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.3px;
+    }
+    .inst-body { padding: 16px 20px 20px; }
+    .inst-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px; font-weight: 700;
+      color: var(--navy); margin-bottom: 3px;
+    }
+    .inst-type {
+      font-size: 12px; font-style: italic;
+      color: var(--saffron); margin-bottom: 10px;
+    }
+    .inst-desc {
+      font-size: 12.5px; font-weight: 300; line-height: 1.65;
+      color: var(--muted); margin-bottom: 12px;
+    }
+    .inst-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .inst-list li {
+      font-size: 12px; color: var(--navy);
+      display: flex; align-items: center; gap: 7px;
+    }
+    .inst-list i { color: var(--saffron); font-size: 9px; }
+    .eco-bar {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 20px;
+      background: var(--navy);
+      border-radius: 8px;
+      font-size: 13px; color: rgba(200,215,240,0.8);
+    }
+    .eco-bar i { color: var(--gold); font-size: 18px; flex-shrink: 0; }
+    .eco-bar strong { color: var(--gold); }
+
+    /* ══════════════════════════════════════════
+       SLIDE 5 — PURPOSE
+    ══════════════════════════════════════════ */
+    #s5 {
+      background: var(--navy);
+      flex-direction: column;
+      padding: 55px 80px 50px;
+      gap: 24px;
+    }
+    .s5-orb {
+      position: absolute;
+      bottom: -250px; right: -180px;
+      width: 550px; height: 550px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,88,10,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .s5-header { position: relative; z-index: 1; }
+    .s5-tagline {
+      font-size: 13px; font-style: italic;
+      color: rgba(180,200,240,0.55);
+      margin-top: 4px;
+    }
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      flex: 1;
+      position: relative; z-index: 1;
+    }
+    .p-card {
+      padding: 22px 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      position: relative; overflow: hidden;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .p-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--saffron), var(--gold));
+      opacity: 0; transition: opacity 0.25s;
+    }
+    .p-card:hover { background: rgba(212,88,10,0.1); border-color: rgba(212,88,10,0.3); transform: translateY(-3px); }
+    .p-card:hover::after { opacity: 1; }
+    .p-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px; font-weight: 700;
+      color: rgba(245,166,35,0.14);
+      line-height: 1; margin-bottom: 4px;
+    }
+    .p-ico { font-size: 24px; color: var(--gold); margin-bottom: 12px; }
+    .p-card h4 { font-size: 14px; font-weight: 600; color: white; margin-bottom: 8px; }
+    .p-card p  { font-size: 12.5px; font-weight: 300; color: rgba(200,215,240,0.65); line-height: 1.6; }
+
+    .stats-bar {
+      display: flex; align-items: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 18px 0;
+      position: relative; z-index: 1;
+    }
+    .stat { flex: 1; text-align: center; }
+    .stat-n {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px; font-weight: 700;
+      color: var(--gold); display: block;
+    }
+    .stat-l {
+      font-size: 10px; font-weight: 500;
+      color: rgba(200,215,240,0.4);
+      letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .stat-sep { width: 1px; height: 36px; background: rgba(255,255,255,0.1); }
+
+    /* ══════════════════════════════════════════
+       SLIDE 6 — CONCLUSION
+    ══════════════════════════════════════════ */
+    #s6 {
+      background: var(--navy2);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 80px;
+      gap: 28px;
+      text-align: center;
+    }
+    .s6-orb1 {
+      position: absolute; top: -200px; left: -150px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,88,10,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .s6-orb2 {
+      position: absolute; bottom: -150px; right: -100px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,166,35,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .s6-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px; font-weight: 600;
+      color: white; line-height: 1.15;
+      position: relative; z-index: 1;
+    }
+    .s6-title .big {
+      font-size: 58px; font-weight: 700;
+      color: var(--gold); display: block;
+    }
+    .s6-loc {
+      font-size: 13px; color: rgba(180,200,240,0.45);
+      letter-spacing: 1px;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      position: relative; z-index: 1;
+    }
+    .s6-loc i { color: var(--gold); }
+    .pillars {
+      display: flex; gap: 20px;
+      width: 100%;
+      position: relative; z-index: 1;
+    }
+    .pillar {
+      flex: 1;
+      padding: 22px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .pillar:hover { background: rgba(212,88,10,0.1); border-color: rgba(212,88,10,0.3); transform: translateY(-3px); }
+    .pillar.feat { background: rgba(212,88,10,0.12); border-color: rgba(212,88,10,0.35); }
+    .pillar i { font-size: 26px; color: var(--gold); margin-bottom: 10px; display: block; }
+    .pillar h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; font-weight: 700;
+      color: white; margin-bottom: 8px;
+    }
+    .pillar p { font-size: 12px; font-weight: 300; color: rgba(200,215,240,0.6); line-height: 1.6; }
+    .s6-cta {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 24px;
+      background: linear-gradient(135deg, rgba(212,88,10,0.15), rgba(245,166,35,0.08));
+      border: 1px solid rgba(245,166,35,0.25);
+      border-radius: 10px;
+      font-size: 13px; color: rgba(253,227,181,0.8);
+      position: relative; z-index: 1;
+      width: 100%;
+      justify-content: center;
+    }
+    .s6-cta i { color: var(--gold); }
+    .s6-cta strong { color: var(--gold); }
+    .s6-footer {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 10px;
+      background: rgba(0,0,0,0.25);
+      font-size: 9px; letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.2);
+      text-align: center; text-transform: uppercase;
+    }
+
+  </style>
 </head>
 <body>
 
-  <!-- ══ NAVBAR ══ -->
-  <header class="navbar" id="navbar">
-    <div class="nav-inner">
-      <div class="nav-logo">
-        <span class="logo-icon"><i class="fa fa-graduation-cap"></i></span>
-        <div class="logo-text">
-          <span class="logo-main">Gnanmandir Gurukul</span>
-          <span class="logo-sub">Adalaj, Gujarat</span>
-        </div>
-      </div>
-      <nav class="nav-links" id="navLinks">
-        <a href="#home"         class="nav-link">Home</a>
-        <a href="#about"        class="nav-link">About</a>
-        <a href="#who-runs"     class="nav-link">Foundation</a>
-        <a href="#institutions" class="nav-link">Institutions</a>
-        <a href="#purpose"      class="nav-link">Purpose</a>
-        <a href="#contact"      class="nav-link nav-cta">Contact</a>
-      </nav>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+<!-- ══ SLIDES ══ -->
+<div id="slides">
 
-  <!-- ══ HERO ══ -->
-  <section class="hero" id="home">
-    <div class="hero-bg">
-      <div class="hero-orb orb-1"></div>
-      <div class="hero-orb orb-2"></div>
-      <div class="hero-orb orb-3"></div>
-      <div class="hero-grid"></div>
+  <!-- SLIDE 1 — TITLE -->
+  <div class="slide active" id="s1">
+    <div class="s1-left">
+      <div class="s1-icon"><i class="fa fa-graduation-cap"></i></div>
+      <div class="s1-label">Gurukul</div>
+      <div class="s1-sub">Est. Adalaj, Gujarat</div>
+      <div class="s1-year">२०२४</div>
     </div>
-
-    <div class="hero-left">
-      <div class="hero-badge fade-up">
-        <i class="fa fa-location-dot"></i>
-        Simandhar City, Adalaj · Gandhinagar, Gujarat
-      </div>
-      <h1 class="hero-title fade-up delay-1">
-        Gnanmandir<br/><span class="gold">Gurukul</span>
-      </h1>
-      <p class="hero-tagline fade-up delay-2">
-        Where <em>Knowledge</em> Meets <em>Character</em>
-      </p>
-      <p class="hero-desc fade-up delay-3">
-        A residential gurukul for boys providing secure accommodation, structured learning, and spiritual development — part of the Dada Bhagwan Foundation community in Adalaj, Gujarat.
-      </p>
-      <div class="hero-actions fade-up delay-4">
-        <a href="#about"   class="btn btn-primary"><i class="fa fa-circle-info"></i> Learn More</a>
-        <a href="#contact" class="btn btn-outline"><i class="fa fa-envelope"></i> Get in Touch</a>
-      </div>
-      <div class="hero-stats fade-up delay-5">
-        <div class="hstat"><span class="hstat-n">100%</span><span class="hstat-l">Safe &amp; Secure</span></div>
-        <div class="hstat-div"></div>
-        <div class="hstat"><span class="hstat-n">24/7</span><span class="hstat-l">Student Support</span></div>
-        <div class="hstat-div"></div>
-        <div class="hstat"><span class="hstat-n">3-in-1</span><span class="hstat-l">Ecosystem</span></div>
+    <div class="s1-right">
+      <div class="s1-orb"></div>
+      <div class="s1-eyebrow">Residential Learning Community</div>
+      <h1 class="s1-title">Gnanmandir<br/><span>Gurukul</span></h1>
+      <div class="s1-line"></div>
+      <div class="s1-loc"><i class="fa fa-location-dot"></i> Adalaj (Gandhinagar), Gujarat</div>
+      <div class="s1-tagline">"Where Knowledge Meets Character"</div>
+      <div class="s1-badges">
+        <span class="badge"><i class="fa fa-shield-halved"></i> Safe</span>
+        <span class="badge"><i class="fa fa-book-open"></i> Academic</span>
+        <span class="badge"><i class="fa fa-heart"></i> Values-Driven</span>
       </div>
     </div>
+    <div class="s1-footer">A Residential Learning Community for Boys &nbsp;·&nbsp; Dada Bhagwan Foundation</div>
+  </div>
 
-    <div class="hero-right fade-up delay-3">
-      <div class="hero-card">
-        <div class="hcard-top">
-          <div class="hcard-icon"><i class="fa fa-graduation-cap"></i></div>
-          <span class="hcard-label">Residential Gurukul</span>
-        </div>
-        <div class="hcard-features">
-          <div class="hf"><i class="fa fa-check-circle"></i> Boys' Hostel &amp; Boarding</div>
-          <div class="hf"><i class="fa fa-check-circle"></i> Structured Academic Environment</div>
-          <div class="hf"><i class="fa fa-check-circle"></i> Character &amp; Spiritual Development</div>
-          <div class="hf"><i class="fa fa-check-circle"></i> Near Trimandir &amp; Amba School</div>
-          <div class="hf"><i class="fa fa-check-circle"></i> Dada Bhagwan Foundation Oversight</div>
-          <div class="hf"><i class="fa fa-check-circle"></i> Safe, Nurturing Community</div>
-        </div>
-        <div class="hcard-quote">
-          <i class="fa fa-quote-left"></i>
-          "A place where students grow academically, spiritually, and as human beings."
-        </div>
+  <!-- SLIDE 2 — WHAT IS IT -->
+  <div class="slide" id="s2">
+    <div class="s2-header">
+      <div class="eyebrow">What Is It?</div>
+      <h2 class="slide-h2">About <span>Gnanmandir Gurukul</span></h2>
+      <p class="slide-sub">A complete residential learning community designed to help boys thrive academically and spiritually.</p>
+    </div>
+    <div class="cards-row">
+      <div class="card">
+        <div class="card-icon ci-orange"><i class="fa fa-house"></i></div>
+        <h3>Residential Gurukul</h3>
+        <p>A structured hostel environment specifically designed for boys — providing safe, secure, and nurturing accommodation while they pursue their education.</p>
+        <div class="card-tag">Housing &amp; Boarding</div>
+      </div>
+      <div class="card dark">
+        <div class="card-icon ci-gold"><i class="fa fa-location-dot"></i></div>
+        <h3>Prime Location</h3>
+        <p>Nestled near Simandhar City, Adalaj, Gujarat — within a vibrant spiritual and educational community that fosters focus and meaningful growth.</p>
+        <div class="card-tag gold-tag">Adalaj, Gandhinagar</div>
+      </div>
+      <div class="card">
+        <div class="card-icon ci-orange"><i class="fa fa-hands-holding-circle"></i></div>
+        <h3>Holistic Support</h3>
+        <p>Beyond just housing, Gnanmandir offers comprehensive support: study discipline, character development, mentorship, and a family-like atmosphere.</p>
+        <div class="card-tag">Holistic Development</div>
       </div>
     </div>
-  </section>
-
-  <!-- ══ ABOUT ══ -->
-  <section class="section section-light" id="about">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">What Is It?</span>
-        <h2 class="section-title">About <span class="gold">Gnanmandir Gurukul</span></h2>
-        <p class="section-desc">A complete residential learning community designed to help boys thrive academically, personally, and spiritually.</p>
-      </div>
-
-      <div class="about-grid">
-        <div class="about-card scroll-reveal">
-          <div class="acard-icon saffron"><i class="fa fa-house"></i></div>
-          <h3>Residential Hostel</h3>
-          <p>A structured hostel environment specifically designed for boys — providing safe, secure, and nurturing accommodation while they pursue their education away from home.</p>
-          <div class="acard-tag">Housing &amp; Boarding</div>
-        </div>
-        <div class="about-card featured scroll-reveal delay-1">
-          <div class="acard-icon gold"><i class="fa fa-location-dot"></i></div>
-          <h3>Prime Location</h3>
-          <p>Nestled near Simandhar City, Adalaj, Gujarat — within a vibrant spiritual and educational community that fosters focus, discipline, and meaningful growth.</p>
-          <div class="acard-tag light">Adalaj, Gandhinagar</div>
-        </div>
-        <div class="about-card scroll-reveal delay-2">
-          <div class="acard-icon saffron"><i class="fa fa-hands-holding-circle"></i></div>
-          <h3>Holistic Support</h3>
-          <p>Beyond just housing, Gnanmandir offers comprehensive support: study discipline, character development, mentorship, and a family-like atmosphere far from home.</p>
-          <div class="acard-tag">Holistic Development</div>
-        </div>
-      </div>
-
-      <blockquote class="about-quote scroll-reveal">
-        <div class="quote-bar"></div>
-        <div class="quote-content">
-          <i class="fa fa-quote-left quote-icon"></i>
-          <p>"Far from home yet never alone — Gnanmandir Gurukul is where boys discover their potential and their purpose."</p>
-        </div>
-      </blockquote>
+    <div class="s2-quote">
+      <i class="fa fa-quote-left"></i>
+      "Far from home yet never alone — where boys discover their potential and their purpose."
     </div>
-  </section>
+  </div>
 
-  <!-- ══ WHO RUNS IT ══ -->
-  <section class="section section-dark" id="who-runs">
-    <div class="container">
-      <div class="who-layout">
-        <div class="who-emblem-col scroll-reveal">
-          <div class="dbf-card">
-            <div class="dbf-ring">
-              <i class="fa fa-person-praying"></i>
-            </div>
-            <h3 class="dbf-name">Dada Bhagwan Foundation</h3>
-            <p class="dbf-short">Spiritual Education &amp; Social Service</p>
-            <div class="dbf-divider"></div>
-            <div class="dbf-badges">
-              <span class="dbf-badge"><i class="fa fa-globe"></i> India &amp; Worldwide</span>
-              <span class="dbf-badge"><i class="fa fa-heart"></i> Non-Profit Trust</span>
-              <span class="dbf-badge"><i class="fa fa-book-open"></i> Akram Vignan</span>
-            </div>
+  <!-- SLIDE 3 — WHO RUNS IT -->
+  <div class="slide" id="s3">
+    <div class="s3-orb1"></div>
+    <div class="s3-left">
+      <div class="dbf-circle"><i class="fa fa-person-praying"></i></div>
+      <div class="dbf-name">Dada Bhagwan Foundation</div>
+      <div class="dbf-tagline">Spiritual Education &amp; Social Service</div>
+      <div class="dbf-tags">
+        <div class="dbf-tag"><i class="fa fa-globe"></i> India &amp; Worldwide</div>
+        <div class="dbf-tag"><i class="fa fa-heart"></i> Non-Profit Trust</div>
+        <div class="dbf-tag"><i class="fa fa-book-open"></i> Akram Vignan</div>
+      </div>
+    </div>
+    <div class="s3-right">
+      <div class="light-eyebrow">Who Runs It?</div>
+      <h2 class="s3-h2">Connected with<br/><span>Dada Bhagwan Foundation</span></h2>
+      <div class="points">
+        <div class="point">
+          <div class="point-ico"><i class="fa fa-hands-holding-circle"></i></div>
+          <div>
+            <strong>A Trusted Foundation</strong>
+            <span>DBF is a trust dedicated to spiritual education and inclusive social service across India and the world.</span>
           </div>
         </div>
-
-        <div class="who-content-col">
-          <span class="section-eyebrow light scroll-reveal">Who Runs It?</span>
-          <h2 class="section-title light scroll-reveal delay-1">Connected with<br/><span class="gold">Dada Bhagwan Foundation</span></h2>
-
-          <div class="who-points">
-            <div class="who-point scroll-reveal delay-1">
-              <div class="wp-icon"><i class="fa fa-hands-holding-circle"></i></div>
-              <div class="wp-body">
-                <h4>A Trusted Foundation</h4>
-                <p>DBF is a trust dedicated to spiritual education and inclusive social service across India and around the world, guided by values of compassion and inner knowledge.</p>
-              </div>
-            </div>
-            <div class="who-point scroll-reveal delay-2">
-              <div class="wp-icon"><i class="fa fa-leaf"></i></div>
-              <div class="wp-body">
-                <h4>Akram Vignan Mission</h4>
-                <p>Promotes scientific self-knowledge and value-based living inspired by Param Pujya Dada Bhagwan — a path of awareness, integrity, and equanimity in daily life.</p>
-              </div>
-            </div>
-            <div class="who-point scroll-reveal delay-3">
-              <div class="wp-icon"><i class="fa fa-seedling"></i></div>
-              <div class="wp-body">
-                <h4>Youth Development</h4>
-                <p>Gnanmandir Gurukul is a direct expression of DBF's mission — creating environments where young boys grow not just academically but as complete, grounded human beings.</p>
-              </div>
-            </div>
+        <div class="point">
+          <div class="point-ico"><i class="fa fa-leaf"></i></div>
+          <div>
+            <strong>Akram Vignan Mission</strong>
+            <span>Promotes scientific self-knowledge and value-based living inspired by Param Pujya Dada Bhagwan.</span>
+          </div>
+        </div>
+        <div class="point">
+          <div class="point-ico"><i class="fa fa-seedling"></i></div>
+          <div>
+            <strong>Youth Development</strong>
+            <span>Gnanmandir Gurukul is a direct expression of DBF's mission — nurturing youth in academics and inner growth.</span>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ══ RELATED INSTITUTIONS ══ -->
-  <section class="section section-cream" id="institutions">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">The Ecosystem</span>
-        <h2 class="section-title">Related Institutions <span class="gold">Nearby</span></h2>
-        <p class="section-desc">Three pillars of one vision — Gnanmandir Gurukul sits at the heart of a complete community of learning, spirit, and service.</p>
-      </div>
-
-      <div class="inst-grid">
-        <div class="inst-card gurukul-self scroll-reveal">
-          <div class="inst-header saffron-bg">
-            <div class="inst-icon-wrap"><i class="fa fa-house"></i></div>
-            <span class="inst-role">You Are Here</span>
-          </div>
-          <div class="inst-body">
-            <h3>Gnanmandir Gurukul</h3>
-            <p class="inst-type">Residential Boys' Hostel</p>
-            <p class="inst-desc">Safe accommodation, study support, and community living for boys pursuing education in Adalaj.</p>
-            <ul class="inst-list">
-              <li><i class="fa fa-check"></i> Structured daily routine</li>
-              <li><i class="fa fa-check"></i> Mentorship &amp; guidance</li>
-              <li><i class="fa fa-check"></i> Spiritual development</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="inst-card trimandir scroll-reveal delay-1">
-          <div class="inst-header navy-bg">
-            <div class="inst-icon-wrap"><i class="fa fa-place-of-worship"></i></div>
-            <span class="inst-role">Spiritual Landmark</span>
-          </div>
-          <div class="inst-body">
-            <h3>Trimandir Temple</h3>
-            <p class="inst-type">Non-Sectarian Spiritual Temple</p>
-            <p class="inst-desc">An open sanctuary welcoming people of all faiths — a place of peace, reflection, and community belonging for everyone.</p>
-            <ul class="inst-list">
-              <li><i class="fa fa-check"></i> Open to all religions</li>
-              <li><i class="fa fa-check"></i> Daily meditation &amp; prayer</li>
-              <li><i class="fa fa-check"></i> Community gatherings</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="inst-card amba scroll-reveal delay-2">
-          <div class="inst-header gold-bg">
-            <div class="inst-icon-wrap"><i class="fa fa-school"></i></div>
-            <span class="inst-role">Educational Partner</span>
-          </div>
-          <div class="inst-body">
-            <h3>Amba School for Excellence</h3>
-            <p class="inst-type">Holistic Educational Institution</p>
-            <p class="inst-desc">A school that blends academic rigour with character formation, creativity, and spiritual values — preparing students not just for exams but for life.</p>
-            <ul class="inst-list">
-              <li><i class="fa fa-check"></i> Holistic curriculum</li>
-              <li><i class="fa fa-check"></i> Character-first approach</li>
-              <li><i class="fa fa-check"></i> Value-based education</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="ecosystem-banner scroll-reveal">
-        <i class="fa fa-circle-nodes"></i>
-        <p>Together, these three institutions form a <strong>complete ecosystem</strong> of spiritual, educational, and residential excellence in Adalaj — a rare and powerful community for young learners.</p>
-      </div>
+  <!-- SLIDE 4 — INSTITUTIONS -->
+  <div class="slide" id="s4">
+    <div class="s2-header">
+      <div class="eyebrow">The Ecosystem</div>
+      <h2 class="slide-h2">Related Institutions <span>Nearby</span></h2>
+      <p class="slide-sub">Three pillars of one vision — a complete community of learning, spirit, and service.</p>
     </div>
-  </section>
-
-  <!-- ══ PURPOSE & VALUE ══ -->
-  <section class="section section-dark" id="purpose">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow light scroll-reveal">Purpose &amp; Value</span>
-        <h2 class="section-title light scroll-reveal delay-1">Why <span class="gold">Gnanmandir Gurukul?</span></h2>
-        <p class="section-desc light scroll-reveal delay-2">Building tomorrow's leaders — today. Four pillars that make Gnanmandir Gurukul a truly transformative environment.</p>
-      </div>
-
-      <div class="purpose-grid">
-        <div class="purpose-card scroll-reveal">
-          <div class="purpose-num">01</div>
-          <div class="purpose-icon-wrap"><i class="fa fa-graduation-cap"></i></div>
-          <h3>Academic Focus</h3>
-          <p>Structured residential life removes distractions and creates ideal conditions for deep, focused study and intellectual growth every day.</p>
+    <div class="inst-grid">
+      <div class="inst-card">
+        <div class="inst-head ih-saffron">
+          <div class="inst-ico"><i class="fa fa-house"></i></div>
+          <span class="inst-role">You Are Here</span>
         </div>
-        <div class="purpose-card scroll-reveal delay-1">
-          <div class="purpose-num">02</div>
-          <div class="purpose-icon-wrap"><i class="fa fa-hands-holding-circle"></i></div>
-          <h3>Character Formation</h3>
-          <p>Daily routines, peer community, and dedicated mentorship build integrity, discipline, and emotional resilience in every student.</p>
-        </div>
-        <div class="purpose-card scroll-reveal delay-2">
-          <div class="purpose-num">03</div>
-          <div class="purpose-icon-wrap"><i class="fa fa-person-praying"></i></div>
-          <h3>Spiritual Foundation</h3>
-          <p>Surrounded by Trimandir and DBF values, students develop an inner compass that guides their decisions throughout life.</p>
-        </div>
-        <div class="purpose-card scroll-reveal delay-3">
-          <div class="purpose-num">04</div>
-          <div class="purpose-icon-wrap"><i class="fa fa-house-heart"></i></div>
-          <h3>Family Environment</h3>
-          <p>Far from home yet never alone — wardens, mentors, and a caring community ensure every student feels truly seen and supported.</p>
+        <div class="inst-body">
+          <h3>Gnanmandir Gurukul</h3>
+          <p class="inst-type">Residential Boys' Hostel</p>
+          <p class="inst-desc">Safe accommodation, study support, and community living for boys pursuing education in Adalaj.</p>
+          <ul class="inst-list">
+            <li><i class="fa fa-check"></i> Structured daily routine</li>
+            <li><i class="fa fa-check"></i> Mentorship &amp; guidance</li>
+            <li><i class="fa fa-check"></i> Spiritual development</li>
+          </ul>
         </div>
       </div>
-
-      <div class="stats-row scroll-reveal">
-        <div class="stat-item">
-          <span class="stat-n">100%</span>
-          <span class="stat-l">Safe Environment</span>
+      <div class="inst-card">
+        <div class="inst-head ih-navy">
+          <div class="inst-ico"><i class="fa fa-place-of-worship"></i></div>
+          <span class="inst-role">Spiritual Landmark</span>
         </div>
-        <div class="stat-sep"></div>
-        <div class="stat-item">
-          <span class="stat-n">24/7</span>
-          <span class="stat-l">Student Support</span>
+        <div class="inst-body">
+          <h3>Trimandir Temple</h3>
+          <p class="inst-type">Non-Sectarian Spiritual Temple</p>
+          <p class="inst-desc">An open sanctuary welcoming all faiths — a place of peace, reflection, and community belonging.</p>
+          <ul class="inst-list">
+            <li><i class="fa fa-check"></i> Open to all religions</li>
+            <li><i class="fa fa-check"></i> Daily meditation &amp; prayer</li>
+            <li><i class="fa fa-check"></i> Community gatherings</li>
+          </ul>
         </div>
-        <div class="stat-sep"></div>
-        <div class="stat-item">
-          <span class="stat-n">3-in-1</span>
-          <span class="stat-l">Ecosystem Access</span>
+      </div>
+      <div class="inst-card">
+        <div class="inst-head ih-navylt">
+          <div class="inst-ico"><i class="fa fa-school"></i></div>
+          <span class="inst-role" style="color:var(--gold)">Educational Partner</span>
         </div>
-        <div class="stat-sep"></div>
-        <div class="stat-item">
-          <span class="stat-n">∞</span>
-          <span class="stat-l">Values Instilled</span>
+        <div class="inst-body">
+          <h3>Amba School for Excellence</h3>
+          <p class="inst-type">Holistic Educational Institution</p>
+          <p class="inst-desc">Blends academic rigour with character formation and spiritual values — preparing students for life.</p>
+          <ul class="inst-list">
+            <li><i class="fa fa-check"></i> Holistic curriculum</li>
+            <li><i class="fa fa-check"></i> Character-first approach</li>
+            <li><i class="fa fa-check"></i> Value-based education</li>
+          </ul>
         </div>
       </div>
     </div>
-  </section>
+    <div class="eco-bar">
+      <i class="fa fa-circle-nodes"></i>
+      Together, these three institutions form a <strong>&nbsp;complete ecosystem&nbsp;</strong> of spiritual, educational, and residential excellence in Adalaj.
+    </div>
+  </div>
 
-  <!-- ══ CONTACT / CTA ══ -->
-  <section class="section section-cta" id="contact">
-    <div class="cta-orb cta-orb-1"></div>
-    <div class="cta-orb cta-orb-2"></div>
-    <div class="container cta-container">
-      <div class="cta-content scroll-reveal">
-        <h2 class="cta-title">
-          A Community Built on<br/>
-          <span class="gold">Education + Values</span>
-        </h2>
-        <p class="cta-sub">Part of the Dada Bhagwan Foundation — a larger mission focused on Education, Spirituality, and Service to all.</p>
-        <div class="cta-info-cards">
-          <div class="cta-info">
-            <i class="fa fa-location-dot"></i>
-            <div>
-              <strong>Location</strong>
-              <span>Near Simandhar City, Adalaj,<br/>Gandhinagar, Gujarat, India</span>
-            </div>
-          </div>
-          <div class="cta-info">
-            <i class="fa fa-globe"></i>
-            <div>
-              <strong>Foundation</strong>
-              <span>Dada Bhagwan Foundation (DBF)<br/>dadabhagwan.org</span>
-            </div>
-          </div>
-          <div class="cta-info">
-            <i class="fa fa-users"></i>
-            <div>
-              <strong>For</strong>
-              <span>Boys seeking residential<br/>education in Adalaj, Gujarat</span>
-            </div>
-          </div>
-        </div>
+  <!-- SLIDE 5 — PURPOSE -->
+  <div class="slide" id="s5">
+    <div class="s5-orb"></div>
+    <div class="s5-header">
+      <div class="light-eyebrow">Purpose &amp; Value</div>
+      <h2 class="slide-h2" style="color:white;">Why <span>Gnanmandir Gurukul?</span></h2>
+      <p class="s5-tagline">Building tomorrow's leaders — today. Four pillars of transformation.</p>
+    </div>
+    <div class="purpose-grid">
+      <div class="p-card">
+        <div class="p-num">01</div>
+        <div class="p-ico"><i class="fa fa-graduation-cap"></i></div>
+        <h4>Academic Focus</h4>
+        <p>Structured residential life removes distractions and creates ideal conditions for deep, focused study every day.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-num">02</div>
+        <div class="p-ico"><i class="fa fa-hands-holding-circle"></i></div>
+        <h4>Character Formation</h4>
+        <p>Daily routines, peer community, and mentorship build integrity, discipline, and emotional resilience.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-num">03</div>
+        <div class="p-ico"><i class="fa fa-person-praying"></i></div>
+        <h4>Spiritual Foundation</h4>
+        <p>Surrounded by Trimandir and DBF values, students develop an inner compass that guides their life.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-num">04</div>
+        <div class="p-ico"><i class="fa fa-house-heart"></i></div>
+        <h4>Family Environment</h4>
+        <p>Far from home yet never alone — wardens and a caring community ensure every student feels supported.</p>
       </div>
     </div>
-  </section>
+    <div class="stats-bar">
+      <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Safe Environment</span></div>
+      <div class="stat-sep"></div>
+      <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">Student Support</span></div>
+      <div class="stat-sep"></div>
+      <div class="stat"><span class="stat-n">3-in-1</span><span class="stat-l">Ecosystem Access</span></div>
+      <div class="stat-sep"></div>
+      <div class="stat"><span class="stat-n">∞</span><span class="stat-l">Values Instilled</span></div>
+    </div>
+  </div>
 
-  <!-- ══ FOOTER ══ -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-logo">
+  <!-- SLIDE 6 — CONCLUSION -->
+  <div class="slide" id="s6">
+    <div class="s6-orb1"></div>
+    <div class="s6-orb2"></div>
+    <div class="s6-title">
+      A Community Built on<br/>
+      <span class="big">Education + Values</span>
+    </div>
+    <div class="s6-loc"><i class="fa fa-location-dot"></i> Gnanmandir Gurukul · Adalaj, Gandhinagar, Gujarat</div>
+    <div class="pillars">
+      <div class="pillar">
+        <i class="fa fa-house"></i>
+        <h4>Safe &amp; Supportive</h4>
+        <p>A welcoming home for boys, ensuring security, comfort, and well-being throughout their studies.</p>
+      </div>
+      <div class="pillar feat">
         <i class="fa fa-graduation-cap"></i>
-        <span>Gnanmandir Gurukul</span>
+        <h4>Academic Excellence</h4>
+        <p>Structured routines, mentor support, and a distraction-free environment for scholarly achievement.</p>
       </div>
-      <p class="footer-text">Adalaj (Gandhinagar), Gujarat &nbsp;·&nbsp; Dada Bhagwan Foundation &nbsp;·&nbsp; Where Knowledge Meets Character</p>
-      <p class="footer-copy">© 2024 Gnanmandir Gurukul. Part of the Dada Bhagwan Foundation.</p>
+      <div class="pillar">
+        <i class="fa fa-leaf"></i>
+        <h4>Values &amp; Vision</h4>
+        <p>Rooted in DBF's ethos — shaping responsible, compassionate citizens of tomorrow.</p>
+      </div>
     </div>
-  </footer>
+    <div class="s6-cta">
+      <i class="fa fa-star"></i>
+      Part of the <strong>Dada Bhagwan Foundation</strong> — a larger community focused on Education + Spirituality + Service
+      <i class="fa fa-star"></i>
+    </div>
+    <div class="s6-footer">Thank You &nbsp;·&nbsp; Gnanmandir Gurukul &nbsp;·&nbsp; Dada Bhagwan Foundation &nbsp;·&nbsp; Adalaj, Gujarat</div>
+  </div>
 
-  <script src="script.js"></script>
+</div><!-- /slides -->
+
+<!-- NAV DOTS -->
+<div id="dots"></div>
+
+<!-- ARROWS -->
+<button id="arrowUp"   disabled><i class="fa fa-chevron-up"></i></button>
+<button id="arrowDown"><i class="fa fa-chevron-down"></i></button>
+
+<!-- COUNTER -->
+<div id="counter">1 / 6</div>
+
+<!-- HINT -->
+<div id="hint">↑ ↓ keys or scroll</div>
+
+<script>
+(function(){
+  var slides   = document.querySelectorAll('.slide');
+  var dots     = document.getElementById('dots');
+  var arrowUp  = document.getElementById('arrowUp');
+  var arrowDn  = document.getElementById('arrowDown');
+  var counter  = document.getElementById('counter');
+  var hint     = document.getElementById('hint');
+  var total    = slides.length;
+  var current  = 0;
+  var busy     = false;
+
+  // Build dots
+  for(var i = 0; i < total; i++){
+    var d = document.createElement('button');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.setAttribute('data-i', i);
+    dots.appendChild(d);
+  }
+  dots.addEventListener('click', function(e){
+    var btn = e.target.closest('.dot');
+    if(btn) goTo(parseInt(btn.getAttribute('data-i')));
+  });
+
+  function goTo(n){
+    if(busy || n === current || n < 0 || n >= total) return;
+    busy = true;
+
+    var prev = current;
+    var dir  = n > prev ? 'up' : 'down';
+    current  = n;
+
+    slides[prev].classList.remove('active');
+    slides[prev].classList.add('exit-' + dir);
+
+    // reset exit after transition
+    setTimeout(function(){
+      slides[prev].classList.remove('exit-up','exit-down');
+    }, 650);
+
+    // incoming slide enters from opposite side
+    slides[current].style.transform = dir === 'up' ? 'translateY(40px)' : 'translateY(-40px)';
+    slides[current].style.opacity   = '0';
+    slides[current].style.pointerEvents = 'none';
+
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        slides[current].classList.add('active');
+        slides[current].style.transform = '';
+        slides[current].style.opacity   = '';
+        slides[current].style.pointerEvents = '';
+        setTimeout(function(){ busy = false; }, 650);
+      });
+    });
+
+    updateUI();
+  }
+
+  function updateUI(){
+    counter.textContent = (current+1) + ' / ' + total;
+    arrowUp.disabled  = current === 0;
+    arrowDn.disabled  = current === total-1;
+    dots.querySelectorAll('.dot').forEach(function(d,i){
+      d.classList.toggle('active', i===current);
+    });
+  }
+
+  arrowUp.addEventListener('click', function(){ goTo(current-1); });
+  arrowDn.addEventListener('click', function(){ goTo(current+1); });
+
+  // Keyboard
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'||e.key==='PageDown'||e.key===' '){ e.preventDefault(); goTo(current+1); }
+    if(e.key==='ArrowUp'  ||e.key==='PageUp'               ){ e.preventDefault(); goTo(current-1); }
+    if(e.key==='Home'){ e.preventDefault(); goTo(0); }
+    if(e.key==='End' ){ e.preventDefault(); goTo(total-1); }
+  });
+
+  // Mouse wheel
+  var wCool = false;
+  document.addEventListener('wheel', function(e){
+    if(wCool) return;
+    wCool = true;
+    if(e.deltaY > 40)       goTo(current+1);
+    else if(e.deltaY < -40) goTo(current-1);
+    setTimeout(function(){ wCool = false; }, 900);
+  }, {passive:true});
+
+  // Touch swipe
+  var ty = 0;
+  document.addEventListener('touchstart', function(e){ ty = e.touches[0].clientY; }, {passive:true});
+  document.addEventListener('touchend',   function(e){
+    var dy = ty - e.changedTouches[0].clientY;
+    if(Math.abs(dy)>60){ dy>0 ? goTo(current+1) : goTo(current-1); }
+  }, {passive:true});
+
+  // Hide hint
+  setTimeout(function(){ hint.classList.add('hidden'); }, 4000);
+
+  updateUI();
+})();
+</script>
+
 </body>
 </html>
